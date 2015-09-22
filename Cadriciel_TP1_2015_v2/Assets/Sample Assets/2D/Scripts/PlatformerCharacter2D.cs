@@ -6,6 +6,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.
+	[SerializeField] float horizontalJumpForce = 400f;
 
 	[Range(0, 1000000)]
 	[SerializeField] int maxJump = 0;
@@ -22,14 +23,19 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
+	float wallRadius = 0.05f;
 	Animator anim;										// Reference to the player's animator component.
 	uint jumpCount = 0;
+	Transform frontWallCheck;
+	Transform backWallCheck;
 
     void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("GroundCheck");
 		ceilingCheck = transform.Find("CeilingCheck");
+		frontWallCheck = transform.Find("FrontWallCheck");
+		backWallCheck = transform.Find("BackWallCheck");
 		anim = GetComponent<Animator>();
 	}
 
@@ -93,16 +99,30 @@ public class PlatformerCharacter2D : MonoBehaviour
 				Flip();
 		}
 
-		if (jump) {
-			if (grounded) {
+		if (jump) 
+		{
+			bool onFrontWall = Physics2D.OverlapCircle(frontWallCheck.position, wallRadius, whatIsGround);
+			bool onBackWall = Physics2D.OverlapCircle(backWallCheck.position, wallRadius, whatIsGround);
+			bool onWall =  onBackWall || onFrontWall;
+			if (grounded || onWall) {
 				jumpCount = 0;
 			}
         	// If the player should jump...
-			if (maxJumpInfinite || jumpCount < maxJump) {
+			if (maxJumpInfinite || jumpCount < maxJump) 
+			{
 				++jumpCount;
 				// Add a vertical force to the player.
 				anim.SetBool ("Ground", false);
-				rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+				if (onWall && !grounded) 
+				{
+					float direction = facingRight ? -1 : 1;
+					direction *= onFrontWall ? 1 : -1;
+					rigidbody2D.AddForce (new Vector2 (direction * horizontalJumpForce, jumpForce));
+				}
+				else 
+				{
+					rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+				}
 			}
 		}
 	}
