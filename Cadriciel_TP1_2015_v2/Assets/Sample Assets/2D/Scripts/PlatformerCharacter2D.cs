@@ -21,6 +21,39 @@ public class PlatformerCharacter2D : MonoBehaviour
 	Transform groundCheck;								// A position marking where to check if the player is grounded.
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
 	bool grounded = false;								// Whether or not the player is grounded.
+	bool onWall = false;
+
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	bool jetpackMode = false; //TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	// Vous pouvez le renommer en jetpackActive
+
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	float wallRadius = 0.05f;
@@ -28,6 +61,10 @@ public class PlatformerCharacter2D : MonoBehaviour
 	uint jumpCount = 0;
 	Transform frontWallCheck;
 	Transform backWallCheck;
+
+	public bool Grounded { get { return grounded; } } 
+	public bool OnWall   { get { return onWall; } }
+	public bool JetpackMode { get { return jetpackMode; } }
 
     void Awake()
 	{
@@ -99,11 +136,13 @@ public class PlatformerCharacter2D : MonoBehaviour
 				Flip();
 		}
 
+		bool onFrontWall = Physics2D.OverlapCircle(frontWallCheck.position, wallRadius, whatIsGround);
+		bool onBackWall = Physics2D.OverlapCircle(backWallCheck.position, wallRadius, whatIsGround);
+		onWall =  onBackWall || onFrontWall;
+
+
 		if (jump) 
 		{
-			bool onFrontWall = Physics2D.OverlapCircle(frontWallCheck.position, wallRadius, whatIsGround);
-			bool onBackWall = Physics2D.OverlapCircle(backWallCheck.position, wallRadius, whatIsGround);
-			bool onWall =  onBackWall || onFrontWall;
 			if (grounded || onWall) {
 				jumpCount = 0;
 			}
