@@ -5,10 +5,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool facingRight = true;							// For determining which way the player is currently facing.
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
-	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.
+	[SerializeField] float jumpForce = 600f;			// Amount of force added when the player jumps.
+	[SerializeField] float lingeringForce = 20f;
 
 	[Range(0, 1000000)]
 	[SerializeField] int maxJump = 0;
+	[SerializeField] float jumpMaxPressTime = 1000.0f;
 	[SerializeField] bool maxJumpInfinite = false;
 
 	[Range(0, 1)]
@@ -24,6 +26,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
 	uint jumpCount = 0;
+	float elapsedJumping = 0.0f;
 
     void Awake()
 	{
@@ -47,8 +50,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump)
 	{
-
-
 		// If crouching, check to see if the character can stand up
 		if(!crouch && anim.GetBool("Crouch"))
 		{
@@ -93,17 +94,41 @@ public class PlatformerCharacter2D : MonoBehaviour
 				Flip();
 		}
 
-		if (jump) {
+		if (jump) 
+		{
+			//BOUCLE SPACE ENFONCE
+
+			//GROUND JUMP START
 			if (grounded) {
 				jumpCount = 0;
 			}
-        	// If the player should jump...
-			if (maxJumpInfinite || jumpCount < maxJump) {
+
+			// JUMP START
+			//If the player should jump...
+			if (elapsedJumping == 0.0f && (maxJumpInfinite || jumpCount < maxJump)) {
+				elapsedJumping += Time.fixedDeltaTime;
 				++jumpCount;
-				// Add a vertical force to the player.
+ 				// Add a vertical force to the player.
 				anim.SetBool ("Ground", false);
 				rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
 			}
+			else
+			{
+				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded)
+				{
+					elapsedJumping += Time.fixedDeltaTime;
+					Vector2 proportionJump = Vector2.Lerp(new Vector2(0.0f, lingeringForce), Vector2.zero, elapsedJumping/jumpMaxPressTime);
+
+					rigidbody2D.AddForce (proportionJump);
+				}
+			}
+
+			//JUMP CONTINUE
+
+		} 
+		else 
+		{
+			elapsedJumping = 0.0f;
 		}
 	}
 
