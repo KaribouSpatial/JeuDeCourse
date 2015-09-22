@@ -12,12 +12,13 @@ public class CameraFollow : MonoBehaviour
 
 
 	private Transform player;		// Reference to the player's transform.
-
+	private PlatformerCharacter2D playerCharacter;
 
 	void Awake ()
 	{
 		// Setting up the reference.
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		playerCharacter = player.GetComponent<PlatformerCharacter2D> ();
 	}
 
 
@@ -53,7 +54,7 @@ public class CameraFollow : MonoBehaviour
 			targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
 
 		// If the player has moved beyond the y margin...
-		if(CheckYMargin())
+		if(CheckYMargin() && (playerCharacter.Grounded || playerCharacter.OnWall || playerCharacter.JetpackMode ))
 			// ... the target y coordinate should be a Lerp between the camera's current y position and the player's current y position.
 			targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
 

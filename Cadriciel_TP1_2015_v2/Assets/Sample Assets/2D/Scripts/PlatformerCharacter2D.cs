@@ -5,8 +5,10 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool facingRight = true;							// For determining which way the player is currently facing.
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
-	[SerializeField] float jumpForce = 600f;			// Amount of force added when the player jumps.
+
+	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.
 	[SerializeField] float lingeringForce = 20f;
+	[SerializeField] float horizontalJumpForce = 400f;
 
 	[Range(0, 1000000)]
 	[SerializeField] int maxJump = 0;
@@ -22,17 +24,59 @@ public class PlatformerCharacter2D : MonoBehaviour
 	Transform groundCheck;								// A position marking where to check if the player is grounded.
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
 	bool grounded = false;								// Whether or not the player is grounded.
+	bool onWall = false;
+
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	bool jetpackMode = false; //TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	// Vous pouvez le renommer en jetpackActive
+
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
+	float wallRadius = 0.05f;
 	Animator anim;										// Reference to the player's animator component.
 	uint jumpCount = 0;
 	float elapsedJumping = 0.0f;
+	Transform frontWallCheck;
+	Transform backWallCheck;
+
+	public bool Grounded { get { return grounded; } } 
+	public bool OnWall   { get { return onWall; } }
+	public bool JetpackMode { get { return jetpackMode; } }
 
     void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("GroundCheck");
 		ceilingCheck = transform.Find("CeilingCheck");
+		frontWallCheck = transform.Find("FrontWallCheck");
+		backWallCheck = transform.Find("BackWallCheck");
 		anim = GetComponent<Animator>();
 	}
 
@@ -94,24 +138,38 @@ public class PlatformerCharacter2D : MonoBehaviour
 				Flip();
 		}
 
+		bool onFrontWall = Physics2D.OverlapCircle(frontWallCheck.position, wallRadius, whatIsGround);
+		bool onBackWall = Physics2D.OverlapCircle(backWallCheck.position, wallRadius, whatIsGround);
+		onWall =  onBackWall || onFrontWall;
+
 		if (jump) 
 		{
 			//BOUCLE SPACE ENFONCE
-
 			//GROUND JUMP START
-			if (grounded) {
+			if (grounded || onWall) {
 				jumpCount = 0;
 			}
 
 			// JUMP START
-			//If the player should jump...
-			if (elapsedJumping == 0.0f && (maxJumpInfinite || jumpCount < maxJump)) {
+        	// If the player should jump...
+			if (elapsedJumping == 0.0f && (maxJumpInfinite || jumpCount < maxJump)) 
+			{
 				elapsedJumping += Time.fixedDeltaTime;
 				++jumpCount;
  				// Add a vertical force to the player.
 				anim.SetBool ("Ground", false);
-				rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+				if (onWall && !grounded) 
+				{
+					float direction = facingRight ? -1 : 1;
+					direction *= onFrontWall ? 1 : -1;
+					rigidbody2D.AddForce (new Vector2 (direction * horizontalJumpForce, jumpForce));
+				}
+				else 
+				{
+					rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+				}
 			}
+			// JUMP CONTINUE
 			else
 			{
 				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded)
@@ -122,9 +180,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 					rigidbody2D.AddForce (proportionJump);
 				}
 			}
-
-			//JUMP CONTINUE
-
 		} 
 		else 
 		{
