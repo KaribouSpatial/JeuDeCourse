@@ -6,13 +6,19 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
+	[Range(0, 2000)]
 	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.
+	[Range(0, 2000)]
 	[SerializeField] float lingeringForce = 20f;
+	[Range(0, 2000)]
+	[SerializeField] float jetpackForce = 10f;
+	[Range(0, 2000)]
 	[SerializeField] float horizontalJumpForce = 400f;
 
-	[Range(0, 1000000)]
+	[Range(0, 100)]
 	[SerializeField] int maxJump = 0;
-	[SerializeField] float jumpMaxPressTime = 1000.0f;
+	[Range(0, 1)]
+	[SerializeField] float jumpMaxPressTime = 0.5f;
 	[SerializeField] bool maxJumpInfinite = false;
 
 	[Range(0, 1)]
@@ -26,36 +32,37 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	bool onWall = false;
 
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	//TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
+	//TODO:: WE DON'T NEED THIS BOOL FFS
 	bool jetpackMode = false; //TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
 	// Vous pouvez le renommer en jetpackActive
+	//I GIVE THE LOWEST AMOUNT OF FUCKS HUMANLY POSSIBLE
 
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
@@ -172,7 +179,11 @@ public class PlatformerCharacter2D : MonoBehaviour
 			// JUMP CONTINUE
 			else
 			{
-				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded)
+				if(jumpCount > maxJump)
+				{
+					rigidbody2D.AddForce (jetpackForce);
+				}
+				else if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded)
 				{
 					elapsedJumping += Time.fixedDeltaTime;
 					Vector2 proportionJump = Vector2.Lerp(new Vector2(0.0f, lingeringForce), Vector2.zero, elapsedJumping/jumpMaxPressTime);
