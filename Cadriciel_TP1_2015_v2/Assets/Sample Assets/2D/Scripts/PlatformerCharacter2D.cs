@@ -20,6 +20,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	[SerializeField] float airControl = 0.0f;			// Whether or not a player can steer while jumping;
 	[SerializeField] LayerMask whatIsGround;			// A mask determining what is ground to the character
+    [SerializeField] bool drawJumpLine;			        // Determines if the jump line is shown or not
 	
 	Transform groundCheck;								// A position marking where to check if the player is grounded.
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
@@ -65,6 +66,8 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float elapsedJumping = 0.0f;
 	Transform frontWallCheck;
 	Transform backWallCheck;
+    GameObject jumpLine;
+	LineRenderer lineRenderer;
 
 	public bool Grounded { get { return grounded; } } 
 	public bool OnWall   { get { return onWall; } }
@@ -77,6 +80,8 @@ public class PlatformerCharacter2D : MonoBehaviour
 		ceilingCheck = transform.Find("CeilingCheck");
 		frontWallCheck = transform.Find("FrontWallCheck");
 		backWallCheck = transform.Find("BackWallCheck");
+        jumpLine = GameObject.Find("JumpLine");
+        lineRenderer = jumpLine.GetComponent<LineRenderer>();
 		anim = GetComponent<Animator>();
 	}
 
@@ -89,9 +94,28 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 		// Set the vertical animation
 		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+
+        if (grounded && drawJumpLine)
+        {
+            Vector3 characterPositionStart = rigidbody2D.transform.position;
+            characterPositionStart.x -= 2;
+            characterPositionStart.y += findMaxHeight();
+            characterPositionStart.z = -1;
+            Vector3 characterPositionEnd = rigidbody2D.transform.position;
+            characterPositionEnd.x += 2;
+            characterPositionEnd.y += findMaxHeight();
+            characterPositionEnd.z = -1;
+
+            lineRenderer.SetPosition(0, characterPositionStart);
+            lineRenderer.SetPosition(1, characterPositionEnd);
+        }
 	}
 
-
+    private int findMaxHeight()
+    {
+        return 5;
+    }
+    
 	public void Move(float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
