@@ -3395,18 +3395,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 800
-  lingeringForce: 20
+  jumpForce: 600
+  lingeringForce: 40
+  jetpackForce: 25
   horizontalJumpForce: 600
   maxJump: 2
-  jumpMaxPressTime: 1000
+  jumpMaxPressTime: .5
   maxJumpInfinite: 0
   crouchSpeed: .5
   airControl: .0500000007
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294966783
-  drawJumpLine: 0
+  drawJumpLine: 1
 --- !u!61 &1334310177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4447,6 +4448,22 @@ Prefab:
     - target: {fileID: 400004, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+      propertyPath: jumpForce
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+      propertyPath: lingeringForce
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+      propertyPath: drawJumpLine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+      propertyPath: jetpackForce
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87a2357765801c34292d6718d8b4d770, type: 2}

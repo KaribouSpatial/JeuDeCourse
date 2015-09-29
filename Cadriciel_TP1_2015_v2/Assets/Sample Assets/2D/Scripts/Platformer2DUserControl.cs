@@ -18,8 +18,15 @@ public class Platformer2DUserControl : MonoBehaviour
 #if CROSS_PLATFORM_INPUT
         if (CrossPlatformInput.GetButtonDown("Jump")) 
 			jump = true;
+
+		if (CrossPlatformInput.GetButtonUp("Jump")) 
+			jump = false;
 #else
-		if (Input.GetButtonDown("Jump")) jump = true;
+		if (Input.GetButtonDown("Jump")) 
+			jump = true;
+		
+		if (Input.GetButtonUp("Jump")) 
+			jump = false;
 #endif
 
     }
@@ -36,9 +43,5 @@ public class Platformer2DUserControl : MonoBehaviour
 
 		// Pass all parameters to the character control script.
 		character.Move( h, crouch , jump );
-
-        // Reset the jump input once it has been used.
-		if (CrossPlatformInput.GetButtonUp("Jump")) 
-			jump = false;
 	}
 }

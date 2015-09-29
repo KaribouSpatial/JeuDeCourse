@@ -33,37 +33,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	bool onWall = false;
 
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	//TODO:: WE DON'T NEED THIS BOOL FFS
-	bool jetpackMode = false; //TODO:: KARIBOU ET MING UTILISEZ CA!!!!!
-	// Vous pouvez le renommer en jetpackActive
-	//I GIVE THE LOWEST AMOUNT OF FUCKS HUMANLY POSSIBLE
+	bool jetpackMode = false;
 
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
@@ -194,31 +164,49 @@ public class PlatformerCharacter2D : MonoBehaviour
 					float direction = facingRight ? -1 : 1;
 					direction *= onFrontWall ? 1 : -1;
 					rigidbody2D.AddForce (new Vector2 (direction * horizontalJumpForce, jumpForce));
+					Debug.Log("Wall jump");
 				}
 				else 
 				{
+					// Reset the y speed for controls more fun
+					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0.0f);
 					rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+					Debug.Log("First jump");
 				}
 			}
 			// JUMP CONTINUE
 			else
 			{
-				if(jumpCount > maxJump)
-				{
-					rigidbody2D.AddForce (jetpackForce);
-				}
-				else if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded)
+				// Holding
+				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded && (maxJumpInfinite || jumpCount < maxJump))
 				{
 					elapsedJumping += Time.fixedDeltaTime;
 					Vector2 proportionJump = Vector2.Lerp(new Vector2(0.0f, lingeringForce), Vector2.zero, elapsedJumping/jumpMaxPressTime);
 
 					rigidbody2D.AddForce (proportionJump);
 				}
+				// Jetpack
+				else if(jumpCount >= maxJump && !maxJumpInfinite)
+				{
+					if(rigidbody2D.velocity.y > 0)
+					{
+						rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0.0f);
+					}
+
+					if(!jetpackMode)
+					{
+						rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0.0f);
+					}
+
+					jetpackMode = true;
+					rigidbody2D.AddForce (new Vector2 (0.0f, jetpackForce));
+				}
 			}
 		} 
 		else 
 		{
 			elapsedJumping = 0.0f;
+			jetpackMode = false;
 		}
 	}
 
