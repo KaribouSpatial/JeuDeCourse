@@ -88,9 +88,14 @@ public class PlatformerCharacter2D : MonoBehaviour
         }
 	}
 
-    private int findMaxHeight()
+    private float findMaxHeight()
     {
-        return 5;
+        float initialSpeed = (jumpForce + rigidbody2D.gravityScale * Physics.gravity.y) / rigidbody2D.mass * Time.fixedDeltaTime;
+        float height = (initialSpeed * initialSpeed) / (rigidbody2D.gravityScale * Physics.gravity.y * -2);
+        float lingeringSpeed = (lingeringForce) / rigidbody2D.mass * jumpMaxPressTime;
+        height += (lingeringSpeed * lingeringSpeed) / (rigidbody2D.gravityScale * Physics.gravity.y * -2);
+        Debug.Log(height);
+        return height;
     }
     
 	public void Move(float move, bool crouch, bool jump)
