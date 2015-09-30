@@ -26,7 +26,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	[SerializeField] float airControl = 0.0f;			// Whether or not a player can steer while jumping;
 	[SerializeField] LayerMask whatIsGround;			// A mask determining what is ground to the character
-    [SerializeField] bool drawJumpLine;			        // Determines if the jump line is shown or not
+    [SerializeField] bool drawJumpLine;			    // Determines if the jump line is shown or not
 	
 	Transform groundCheck;								// A position marking where to check if the player is grounded.
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
@@ -43,12 +43,14 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float elapsedJumping = 0.0f;
 	Transform frontWallCheck;
 	Transform backWallCheck;
-    GameObject jumpLine;
-	LineRenderer lineRenderer;
 
 	public bool Grounded { get { return grounded; } } 
 	public bool OnWall   { get { return onWall; } }
 	public bool JetpackMode { get { return jetpackMode; } }
+	public bool DrawJumpLine { get { return drawJumpLine; } }
+	public float LingeringForce { get { return lingeringForce; } }
+	public float JumpMaxPressTime { get { return jumpMaxPressTime; } }
+	public float JumpForce { get { return jumpForce; } }
 
     void Awake()
 	{
@@ -57,8 +59,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		ceilingCheck = transform.Find("CeilingCheck");
 		frontWallCheck = transform.Find("FrontWallCheck");
 		backWallCheck = transform.Find("BackWallCheck");
-        jumpLine = GameObject.Find("JumpLine");
-        lineRenderer = jumpLine.GetComponent<LineRenderer>();
 		anim = GetComponent<Animator>();
 	}
 
@@ -71,32 +71,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 		// Set the vertical animation
 		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
-
-        if (grounded && drawJumpLine)
-        {
-            Vector3 characterPositionStart = rigidbody2D.transform.position;
-            characterPositionStart.x -= 2;
-            characterPositionStart.y += findMaxHeight();
-            characterPositionStart.z = -1;
-            Vector3 characterPositionEnd = rigidbody2D.transform.position;
-            characterPositionEnd.x += 2;
-            characterPositionEnd.y += findMaxHeight();
-            characterPositionEnd.z = -1;
-
-            lineRenderer.SetPosition(0, characterPositionStart);
-            lineRenderer.SetPosition(1, characterPositionEnd);
-        }
 	}
-
-    private float findMaxHeight()
-    {
-        float initialSpeed = (jumpForce + rigidbody2D.gravityScale * Physics.gravity.y) / rigidbody2D.mass * Time.fixedDeltaTime;
-        float height = (initialSpeed * initialSpeed) / (rigidbody2D.gravityScale * Physics.gravity.y * -2);
-        float lingeringSpeed = (lingeringForce) / rigidbody2D.mass * jumpMaxPressTime;
-        height += (lingeringSpeed * lingeringSpeed) / (rigidbody2D.gravityScale * Physics.gravity.y * -2);
-        Debug.Log(height);
-        return height;
-    }
     
 	public void Move(float move, bool crouch, bool jump)
 	{
