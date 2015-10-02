@@ -8,12 +8,18 @@ public class MoveBox : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if ((character.Grounded && !Input.GetKey(KeyCode.Space)) && character.DrawJumpLine) {
-			float posX = character.transform.position.x;
-			float posY = character.transform.position.y + findMaxHeight();
-			Vector3 position = new Vector3 (posX, posY, 0);
-			this.transform.position = position;
-		}
+        if (character.DrawJumpLine)
+        {
+            float posX = character.transform.position.x;
+            float posY = this.transform.position.y;
+            if ((character.Grounded && !Input.GetKey(KeyCode.Space)))
+            {
+                posY = character.transform.position.y + findMaxHeight();                                
+            }
+
+            Vector3 position = new Vector3(posX, posY, 0);
+            this.transform.position = position;
+        }
 	}
 
 	private float findMaxHeight()
@@ -22,7 +28,6 @@ public class MoveBox : MonoBehaviour {
 		float height = (initialSpeed * initialSpeed) / (character.rigidbody2D.gravityScale * Physics.gravity.y * -2);
 		float lingeringSpeed = (character.LingeringForce) / character.rigidbody2D.mass * character.JumpMaxPressTime;
 		height += (lingeringSpeed * lingeringSpeed) / (character.rigidbody2D.gravityScale * Physics.gravity.y * -2);
-		Debug.Log(height);
 		return height;
 	}
 }

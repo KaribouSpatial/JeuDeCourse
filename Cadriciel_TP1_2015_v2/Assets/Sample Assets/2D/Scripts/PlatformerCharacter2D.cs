@@ -144,14 +144,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 					float direction = facingRight ? -1 : 1;
 					direction *= onFrontWall ? 1 : -1;
 					rigidbody2D.AddForce (new Vector2 (direction * horizontalJumpForce, jumpForce));
-					Debug.Log("Wall jump");
 				}
 				else 
 				{
 					// Reset the y speed for controls more fun
 					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0.0f);
 					rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
-					Debug.Log("First jump");
 				}
 			}
 			// JUMP CONTINUE
