@@ -7,9 +7,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
 	[Range(0, 2000)]
-	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.
-	[Range(0, 2000)]
-	[SerializeField] float lingeringForce = 20f;
+	[SerializeField] float jumpForce = 20f;			// Amount of force added when the player jumps.
 	[Range(0, 2000)]
 	[SerializeField] float jetpackForce = 10f;
 	[Range(0, 2000)]
@@ -48,7 +46,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 	public bool OnWall   { get { return onWall; } }
 	public bool JetpackMode { get { return jetpackMode; } }
 	public bool DrawJumpLine { get { return drawJumpLine; } }
-	public float LingeringForce { get { return lingeringForce; } }
 	public float JumpMaxPressTime { get { return jumpMaxPressTime; } }
 	public float JumpForce { get { return jumpForce; } }
 
@@ -137,6 +134,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 			{
 				elapsedJumping += Time.fixedDeltaTime;
 				++jumpCount;
+
  				// Add a vertical force to the player.
 				anim.SetBool ("Ground", false);
 				if (onWall && !grounded) 
@@ -149,17 +147,17 @@ public class PlatformerCharacter2D : MonoBehaviour
 				{
 					// Reset the y speed for controls more fun
 					rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0.0f);
-					rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+					rigidbody2D.AddForce (new Vector2(0.0f, jumpForce));
 				}
 			}
 			// JUMP CONTINUE
 			else
 			{
 				// Holding
-				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && !grounded && (maxJumpInfinite || jumpCount < maxJump))
+				if((elapsedJumping + Time.fixedDeltaTime) < jumpMaxPressTime && (maxJumpInfinite || jumpCount < maxJump))
 				{
+					Vector2 proportionJump = Vector2.Lerp(new Vector2(0.0f, jumpForce), Vector2.zero, elapsedJumping/jumpMaxPressTime);
 					elapsedJumping += Time.fixedDeltaTime;
-					Vector2 proportionJump = Vector2.Lerp(new Vector2(0.0f, lingeringForce), Vector2.zero, elapsedJumping/jumpMaxPressTime);
 
 					rigidbody2D.AddForce (proportionJump);
 				}
