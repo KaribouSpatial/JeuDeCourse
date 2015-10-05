@@ -102,7 +102,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 					move = move * airControl + (rigidbody2D.velocity.x / maxSpeed) * (1.0f - airControl); 
 				}
 			}
-
+			
 			// The Speed animator parameter is set to the absolute value of the horizontal input.
 			anim.SetFloat("Speed", Mathf.Abs(move));
 
