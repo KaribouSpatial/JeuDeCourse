@@ -28,6 +28,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Advanced advanced;                                     // container for the advanced setting which will expose as a foldout in the inspector
 	[SerializeField] bool preserveDirectionWhileInAir = false;                      // flag for if the direction of travel to be preserved in the air (helps cars land in the right direction if doing huge jumps!)
 	[SerializeField] private float jumpPower = 100;
+	[SerializeField] private SpeedoNeedle speedNeedle;
 
     [System.Serializable]
     public class Advanced                                                           // the advanced settings for the car controller
@@ -177,7 +178,14 @@ public class CarController : MonoBehaviour
 		if (anyOnGround && jump > 0) {
 			rigidbody.AddForce (transform.up * JumpPower);
 		}
+		if (speedNeedle)
+			UpdateSpeedoMeter();
 
+	}
+
+	void UpdateSpeedoMeter()
+	{
+		speedNeedle.angle = rigidbody.velocity.magnitude;
 	}
 
 	void ConvertInputToAccelerationAndBraking (float accelBrakeInput)
