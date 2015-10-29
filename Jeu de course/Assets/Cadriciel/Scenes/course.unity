@@ -6599,10 +6599,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: d8e3df70c4543eb4cae049324198f004, type: 2}
+  - {fileID: 2100000, guid: fef238ceacfb9ae4e8f947a63ffc5a96, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: 2be8f89597540ef41bf79ea855f9dd76, type: 2}
-  - {fileID: 2100000, guid: f96ade068e2d5b948a65bcd2171a4b62, type: 2}
+  - {fileID: 2100000, guid: ac70e4e8ec7521e43b956a203cb6975e, type: 2}
+  - {fileID: 2100000, guid: b8c9d513b3b5d0146ad34f2001e4a589, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -8693,9 +8693,9 @@ MonoBehaviour:
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
-  maxSpeed: 80
-  maxTorque: 60
-  minTorque: 10
+  maxSpeed: 60
+  maxTorque: 80
+  minTorque: 20
   brakePower: 60
   adjustCentreOfMass: .25
   advanced:
@@ -8714,6 +8714,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 100
 --- !u!114 &481286552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9402,15 +9403,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: maxTorque
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: maxSpeed
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: brakePower
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: minTorque
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: jumpPower
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: preserveDirectionWhileInAir
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400026, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
@@ -19066,6 +19079,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!54 &981142460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27197,6 +27211,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!114 &1368033982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30820,6 +30835,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!114 &1635867385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34637,6 +34653,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!54 &1881066739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37395,6 +37412,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!54 &1977983691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38652,6 +38670,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!114 &2042105153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39799,6 +39818,7 @@ MonoBehaviour:
     gearFactorSmoothing: 5
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
+  jumpPower: 20
 --- !u!114 &2099699819
 MonoBehaviour:
   m_ObjectHideFlags: 0

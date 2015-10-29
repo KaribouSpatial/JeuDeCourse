@@ -27,6 +27,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float adjustCentreOfMass = 0.25f;                      // vertical offset for the centre of mass
     [SerializeField] private Advanced advanced;                                     // container for the advanced setting which will expose as a foldout in the inspector
 	[SerializeField] bool preserveDirectionWhileInAir = false;                      // flag for if the direction of travel to be preserved in the air (helps cars land in the right direction if doing huge jumps!)
+	[SerializeField] private float jumpPower = 100;
 
     [System.Serializable]
     public class Advanced                                                           // the advanced settings for the car controller
@@ -116,6 +117,12 @@ public class CarController : MonoBehaviour
     {
         get { return maxSteerAngle; }
     }
+
+
+	public float JumpPower
+	{
+		get { return jumpPower; }
+	}
     
 
 	// variables added due to separating out things into functions!
@@ -153,7 +160,7 @@ public class CarController : MonoBehaviour
 	}
 
 
-	public void Move (float steerInput, float accelBrakeInput)
+	public void Move (float steerInput, float accelBrakeInput, float jump)
     {
 
 		// lose control of engine if immobilized
@@ -167,6 +174,9 @@ public class CarController : MonoBehaviour
         ApplyDownforce ();
 		CalculateRevs();
 		PreserveDirectionInAir();
+		if (anyOnGround && jump > 0) {
+			rigidbody.AddForce (transform.up * JumpPower);
+		}
 
 	}
 
