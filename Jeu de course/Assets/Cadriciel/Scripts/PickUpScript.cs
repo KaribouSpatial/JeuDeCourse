@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PickUpScript : MonoBehaviour {
 
-	public enum PowerUps { GreenBubble, RedBubble, BlueBubble }
+	public enum PowerUps { Nothing, GreenBubble, RedBubble, BlueBubble }
 	
 	public float RotationSpeed;
 
@@ -26,6 +26,7 @@ public class PickUpScript : MonoBehaviour {
 			_deactivatedTime -= Time.deltaTime;
 			if(_deactivatedTime <= 0) {
 				GetComponent<MeshRenderer> ().enabled = true;
+                NextPowerUp = PowerUps.GreenBubble;
 			}
 		}
 	}
@@ -34,6 +35,14 @@ public class PickUpScript : MonoBehaviour {
 		if (GetComponent<MeshRenderer> ().enabled) {
 			GetComponent<MeshRenderer> ().enabled = false;
 			_deactivatedTime = MaxDeactivatedTime;
+
+		    var carInventory = other.attachedRigidbody.gameObject.GetComponent<CarInventory>();
+		    if (carInventory != null)
+		    {
+                carInventory.AvailablePowerUp = NextPowerUp;
+                Debug.Log(NextPowerUp);
+            }
+		    NextPowerUp = PowerUps.Nothing;
 		}
 	}
 }
