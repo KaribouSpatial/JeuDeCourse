@@ -1,64 +1,70 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 
-public class CarInventory : MonoBehaviour
+namespace Assets.Cadriciel.Scripts
 {
+    public class CarInventory : MonoBehaviour
+    {
 
-    public float InitialProjectileSpeed;
-    public PickUpScript.PowerUps AvailablePowerUp;
+        public float InitialProjectileSpeed;
+        public PickUpItem.PowerUps AvailablePowerUp;
 
-    private GameObject _projectilesHolder;
+        private GameObject _projectilesHolder;
 
-	// Use this for initialization
-	void Start () {
-        _projectilesHolder = GameObject.Find("Projectiles");	
-	}
+        // Use this for initialization
+        void Start () {
+            _projectilesHolder = GameObject.Find("Projectiles");	
+        }
 	
-	// Update is called once per frame
-	void Update () {
+        // Update is called once per frame
+        void Update () {
 #if CROSS_PLATFORM_INPUT
-		var fire = CrossPlatformInput.GetAxis("Fire1");
+            var fire = CrossPlatformInput.GetAxis("Fire1");
 #else
 		var fire = Input.GetAxis("Fire");
 #endif
-	    if (Math.Abs(fire) > 0.01 && AvailablePowerUp != PickUpScript.PowerUps.Nothing)
-	    {
-	        switch (AvailablePowerUp)
-	        {
-	            case PickUpScript.PowerUps.GreenBubble:
-                    createGreenBubble();
-                    break;
-	            case PickUpScript.PowerUps.RedBubble:
-	                break;
-	            case PickUpScript.PowerUps.BlueBubble:
-	                break;
-	            case PickUpScript.PowerUps.Nothing:
-	            default:
-                    break;
-	        }
+            if (Math.Abs(fire) > 0.01 && AvailablePowerUp != PickUpItem.PowerUps.Nothing)
+            {
+                switch (AvailablePowerUp)
+                {
+                    case PickUpItem.PowerUps.GreenBubble:
+                    case PickUpItem.PowerUps.RedBubble:
+                    case PickUpItem.PowerUps.BlueBubble:
+                        createBubble(AvailablePowerUp);
+                        break;
+                    case PickUpItem.PowerUps.Nothing:
+                    default:
+                        break;
+                }
 
-	        AvailablePowerUp = PickUpScript.PowerUps.Nothing;
-	    }
-    }
-
-    void createGreenBubble()
-    {
-        var bubble = Instantiate(Resources.Load("GreenBubble")) as GameObject;
-        bubble.transform.parent = _projectilesHolder.transform;
-        bubble.transform.position = this.transform.FindChild("SpecialObjectStartPoint").position;
-
-        if (this.gameObject.rigidbody.velocity.magnitude > InitialProjectileSpeed)
-        {
-            bubble.rigidbody.velocity = this.gameObject.rigidbody.velocity;
-            bubble.rigidbody.velocity.Scale(new Vector3(2, 2, 2));
+                AvailablePowerUp = PickUpItem.PowerUps.Nothing;
+            }
         }
-        else
+
+        private void createBubble(PickUpItem.PowerUps mode)
         {
+            GameObject bubble = null;
+            switch (mode)
+            {
+                case PickUpItem.PowerUps.GreenBubble:
+                    bubble = Instantiate(Resources.Load("GreenBubble")) as GameObject;
+                    break;
+                case PickUpItem.PowerUps.RedBubble:
+                    bubble = Instantiate(Resources.Load("RedBubble")) as GameObject;
+                    break;
+                case PickUpItem.PowerUps.BlueBubble:
+                    bubble = Instantiate(Resources.Load("BlueBubble")) as GameObject;
+                    bubble.GetComponent<WaypointProgressTracker>().circuit = GameObject.Find("Path B").GetComponent<WaypointCircuit>();
+                    break;
+                default:
+                    throw new Exception("This is not a bubble");
+            }
+
+            bubble.transform.parent = _projectilesHolder.transform;
+            bubble.transform.position = this.transform.FindChild("SpecialObjectStartPoint").position;
+
             var direction = bubble.transform.position - this.transform.position;
-            bubble.rigidbody.velocity = direction.normalized * InitialProjectileSpeed;
+            bubble.rigidbody.velocity = direction.normalized;
         }
-
-        bubble.GetComponent<Projectile>().Speed = bubble.rigidbody.velocity.magnitude;
     }
 }

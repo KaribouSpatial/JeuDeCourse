@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 public class RaceManager : MonoBehaviour 
 {
@@ -17,6 +18,8 @@ public class RaceManager : MonoBehaviour
 
 	[SerializeField]
 	private int _endCountdown;
+
+    public GameObject[] CarsPositions;
 
 	// Use this for initialization
 	void Awake () 
@@ -92,4 +95,9 @@ public class RaceManager : MonoBehaviour
 		}
 
 	}
+
+    public void Update()
+    {
+        CarsPositions = _carContainer.GetComponentsInChildren<WaypointProgressTracker>().OrderByDescending(x => x.progressDistance).Select(x => x.gameObject).ToArray();
+    }
 }
