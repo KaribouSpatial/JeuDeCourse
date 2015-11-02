@@ -100,4 +100,25 @@ public class RaceManager : MonoBehaviour
     {
         CarsPositions = _carContainer.GetComponentsInChildren<WaypointProgressTracker>().OrderByDescending(x => x.progressDistance).Select(x => x.gameObject).ToArray();
     }
+
+	public void LateUpdate()
+	{
+		for(int i = 1; i < CarsPositions.Length; ++i) 
+		{
+			if(CarsPositions[i].GetComponentInChildren<CarAIControl>())
+			{
+				if(!CarsPositions[i].GetComponentInChildren<CarAIControl>().enabled)
+					continue;
+			}
+			if(CarsPositions[i].GetComponentInChildren<CarUserControlMP>())
+			{
+				if(!CarsPositions[i].GetComponentInChildren<CarUserControlMP>().enabled)
+					continue;
+			}
+
+			var car = CarsPositions[i].GetComponent<Rigidbody>();
+			var force = new Vector3(car.transform.forward.x*car.velocity.x*0.01f*i, 0, car.transform.forward.z*car.velocity.z*0.01f*i);
+			car.AddForce(force);
+		}
+	}
 }
