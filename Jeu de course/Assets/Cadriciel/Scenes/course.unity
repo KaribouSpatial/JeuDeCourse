@@ -9080,6 +9080,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 1532787419}
 --- !u!114 &481286552
 MonoBehaviour:
@@ -20280,6 +20281,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!54 &981142460
 Rigidbody:
@@ -29249,6 +29251,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!114 &1368033982
 MonoBehaviour:
@@ -32991,6 +32994,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!114 &1635867385
 MonoBehaviour:
@@ -37076,6 +37080,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!54 &1881066739
 Rigidbody:
@@ -39914,6 +39919,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!54 &1977983691
 Rigidbody:
@@ -41342,6 +41348,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!114 &2042105153
 MonoBehaviour:
@@ -42557,6 +42564,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  aerialControlFactor: .5
   speedNeedle: {fileID: 0}
 --- !u!114 &2099699819
 MonoBehaviour:

@@ -28,6 +28,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Advanced advanced;                                     // container for the advanced setting which will expose as a foldout in the inspector
 	[SerializeField] bool preserveDirectionWhileInAir = false;                      // flag for if the direction of travel to be preserved in the air (helps cars land in the right direction if doing huge jumps!)
 	[SerializeField] private float jumpPower = 100;
+	[SerializeField] [Range(0,1)] private float aerialControlFactor = 0.5f;
 	[SerializeField] private SpeedoNeedle speedNeedle;
 
     [System.Serializable]
@@ -183,8 +184,8 @@ public class CarController : MonoBehaviour
 
 		//Aerial phase
 		if (!anyOnGround) {
-			transform.Rotate(Vector3.left * accelBrakeInput);
-			transform.Rotate(Vector3.up * steerInput);
+			transform.Rotate(Vector3.left * accelBrakeInput * aerialControlFactor);
+			transform.Rotate(Vector3.up * steerInput * aerialControlFactor);
 		}
 
 		if (speedNeedle)
