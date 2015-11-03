@@ -15,7 +15,7 @@ public class SpeedoNeedle : MonoBehaviour {
 	}
 
 	void UpdateSettings() {
-		pos = new Vector2(transform.localPosition.x, transform.localPosition.y);
+		pos = new Vector2(transform.localPosition.x, Screen.height - transform.localPosition.y);
 		rect = new Rect(pos.x - size.x * 0.5f, pos.y - size.y * 0.5f, size.x, size.y);
 		pivot = new Vector2(rect.xMin + rect.width * 0.5f, rect.yMin + rect.height * 0.5f);
 	}

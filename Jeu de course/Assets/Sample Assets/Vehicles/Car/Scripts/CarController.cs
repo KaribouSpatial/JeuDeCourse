@@ -185,7 +185,7 @@ public class CarController : MonoBehaviour
 
 	void UpdateSpeedoMeter()
 	{
-		speedNeedle.angle = rigidbody.velocity.magnitude;
+		speedNeedle.angle = rigidbody.velocity.magnitude * 3;
 	}
 
 	void ConvertInputToAccelerationAndBraking (float accelBrakeInput)
