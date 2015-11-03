@@ -6790,10 +6790,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 042a885649322574fb3c174c958eb544, type: 2}
+  - {fileID: 2100000, guid: fef238ceacfb9ae4e8f947a63ffc5a96, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: 75ede458f71bb28449262dcbb8912251, type: 2}
-  - {fileID: 2100000, guid: 596cc28a0e5908b46899572e75634f28, type: 2}
+  - {fileID: 2100000, guid: ac70e4e8ec7521e43b956a203cb6975e, type: 2}
+  - {fileID: 2100000, guid: b8c9d513b3b5d0146ad34f2001e4a589, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -8962,6 +8962,8 @@ GameObject:
   - 114: {fileID: 481286556}
   - 114: {fileID: 481286558}
   - 114: {fileID: 481286559}
+  - 114: {fileID: 481286560}
+  - 65: {fileID: 481286561}
   m_Layer: 8
   m_Name: Joueur 1
   m_TagString: Player
@@ -9159,6 +9161,33 @@ MonoBehaviour:
   progressStyle: 0
   pointToPointThreshold: 4
   target: {fileID: 2066896874}
+--- !u!114 &481286560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481286549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966fe0e51b0e2c440805161c8dc7d36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointsPerManoeuver: 20
+  JumpMinHeight: 5
+  WaitTimeForFailure: 3
+  ItemDisplay: {fileID: 1984434777}
+--- !u!65 &481286561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481286549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3, z: 6}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1 &487389443
 GameObject:
   m_ObjectHideFlags: 0
@@ -28072,6 +28101,7 @@ Transform:
   - {fileID: 247879814}
   - {fileID: 1158101499}
   - {fileID: 438218562}
+  - {fileID: 1984434776}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1316483489
@@ -39827,6 +39857,57 @@ MonoBehaviour:
   progressStyle: 0
   pointToPointThreshold: 4
   target: {fileID: 1946843709}
+--- !u!1 &1984434775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1984434776}
+  - 132: {fileID: 1984434777}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1984434776
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1984434775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1305879589}
+  m_RootOrder: 4
+--- !u!132 &1984434777
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1984434775}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 'Score: 0'
+  m_Anchor: 2
+  m_Alignment: 0
+  m_PixelOffset: {x: -30, y: -60}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
 --- !u!1 &1988760123
 GameObject:
   m_ObjectHideFlags: 0

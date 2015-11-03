@@ -181,8 +181,6 @@ public class CarController : MonoBehaviour
 		}
 		//Aerial phase
 		if (!anyOnGround) {
-			Debug.Log("Steer " + steerInput);
-			Debug.Log("Accel " + accelBrakeInput);
 			transform.Rotate(Vector3.left * accelBrakeInput);
 			transform.Rotate(Vector3.up * steerInput);
 		}
