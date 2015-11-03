@@ -2508,6 +2508,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1625267839}
   m_RootOrder: 3
+--- !u!1 &150210816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 150210817}
+  - 131: {fileID: 150210818}
+  m_Layer: 0
+  m_Name: Speedo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150210817
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150210816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: .150000006, y: .150000006, z: 1}
+  m_Children:
+  - {fileID: 1532787420}
+  m_Father: {fileID: 1305879589}
+  m_RootOrder: 1
+--- !u!131 &150210818
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150210816}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 24babdb88b1cbde44908345f816c7157, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 54
+    y: 40
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &151023410
 GameObject:
   m_ObjectHideFlags: 0
@@ -4709,7 +4757,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 1305879589}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!132 &247879815
 GUIText:
   m_ObjectHideFlags: 0
@@ -8475,7 +8523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1305879589}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!132 &438218563
 GUIText:
   m_ObjectHideFlags: 0
@@ -9032,6 +9080,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 1532787419}
 --- !u!114 &481286552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9873,6 +9922,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: mphNeedle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: speedNeedle
+      value: 
+      objectReference: {fileID: 1532787419}
     m_RemovedComponents:
     - {fileID: 11400026, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
@@ -20223,6 +20280,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!54 &981142460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23342,7 +23400,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 1305879589}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!132 &1158101500
 GUIText:
   m_ObjectHideFlags: 0
@@ -28098,6 +28156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1170605946}
+  - {fileID: 150210817}
   - {fileID: 247879814}
   - {fileID: 1158101499}
   - {fileID: 438218562}
@@ -29190,6 +29249,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!114 &1368033982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31590,6 +31650,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1625267839}
   m_RootOrder: 9
+--- !u!1 &1532787418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1532787420}
+  - 114: {fileID: 1532787419}
+  m_Layer: 0
+  m_Name: Needle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1532787419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532787418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60930b72c0df7b40872571f309d632e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: 5fb71048c6e07314880f7441e1ac14b1, type: 3}
+  angle: 0
+  size: {x: 64, y: 64}
+--- !u!4 &1532787420
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532787418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 58, y: 34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 150210817}
+  m_RootOrder: 0
 --- !u!1001 &1535779098
 Prefab:
   m_ObjectHideFlags: 0
@@ -32889,6 +32991,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!114 &1635867385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36973,6 +37076,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!54 &1881066739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39810,6 +39914,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!54 &1977983691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39884,7 +39989,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 1305879589}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!132 &1984434777
 GUIText:
   m_ObjectHideFlags: 0
@@ -41237,6 +41342,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!114 &2042105153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41541,6 +41647,10 @@ Prefab:
     - target: {fileID: 400036, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: speedNeedle
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400026, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
@@ -42447,6 +42557,7 @@ MonoBehaviour:
     revRangeBoundary: .800000012
   preserveDirectionWhileInAir: 1
   jumpPower: 100
+  speedNeedle: {fileID: 0}
 --- !u!114 &2099699819
 MonoBehaviour:
   m_ObjectHideFlags: 0
