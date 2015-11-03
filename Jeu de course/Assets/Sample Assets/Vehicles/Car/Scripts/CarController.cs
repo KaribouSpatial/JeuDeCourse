@@ -174,10 +174,18 @@ public class CarController : MonoBehaviour
         ApplyDownforce ();
 		CalculateRevs();
 		PreserveDirectionInAir();
+
+		//Jump
 		if (anyOnGround && jump > 0) {
 			rigidbody.AddForce (transform.up * JumpPower);
 		}
-
+		//Aerial phase
+		if (!anyOnGround) {
+			Debug.Log("Steer " + steerInput);
+			Debug.Log("Accel " + accelBrakeInput);
+			transform.Rotate(Vector3.left * accelBrakeInput);
+			transform.Rotate(Vector3.up * steerInput);
+		}
 	}
 
 	void ConvertInputToAccelerationAndBraking (float accelBrakeInput)
