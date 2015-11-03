@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa555e8c9ec94d4d97de8a0b2c1f03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityMultiplication: 3
+  GravityMultiplication: 6
   MaxTime: 10
   MaxRebounds: 2
+  ExplodesWithCars: 1
   ExplosionForce: 1000
   TorqueForce: 1000
   SpeedReduction: 9.99999975e-05

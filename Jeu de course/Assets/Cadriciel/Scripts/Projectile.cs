@@ -38,9 +38,10 @@ namespace Assets.Cadriciel.Scripts
             }
 
             this.rigidbody.velocity = this.rigidbody.velocity.normalized*Speed;
-        
+
             // Increment gravity
             this.rigidbody.AddForce((GravityMultiplication - 1) * Physics.gravity);
+            this.rigidbody.velocity = new Vector3(this.rigidbody.velocity.x, 0, this.rigidbody.velocity.z);
         }
 
         void OnCollisionEnter(Collision collision)
@@ -72,8 +73,11 @@ namespace Assets.Cadriciel.Scripts
 
                     // We will do ourselve the collision
                     this.rigidbody.velocity = this.rigidbody.velocity - 2 * Vector3.Dot(this.rigidbody.velocity, contact.normal.normalized) * contact.normal.normalized;
+                    this.rigidbody.velocity = new Vector3(this.rigidbody.velocity.x, 0, this.rigidbody.velocity.z);
+
                     // Move the object outside of the collision
                     this.rigidbody.position += this.rigidbody.velocity * Time.fixedDeltaTime * 2;
+
                     // Reduce the speed so we can avoid a double collision
                     this.rigidbody.velocity *= 0.001f;
 

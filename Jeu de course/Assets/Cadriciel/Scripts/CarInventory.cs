@@ -5,11 +5,40 @@ namespace Assets.Cadriciel.Scripts
 {
     public class CarInventory : MonoBehaviour
     {
+        public GUITexture ItemDisplay;
 
-        public float InitialProjectileSpeed;
-        public PickUpItem.PowerUps AvailablePowerUp;
+        public PickUpItem.PowerUps AvailablePowerUp
+        {
+            get { return _availablePowerUp; }
+            set
+            {
+                _availablePowerUp = value;
+
+                if (ItemDisplay == null)
+                {
+                    return;
+                }
+
+                switch (value)
+                {
+                    case PickUpItem.PowerUps.Nothing:
+                        ItemDisplay.texture = Resources.Load("Textures/NothingItem") as Texture;
+                        break;
+                    case PickUpItem.PowerUps.GreenBubble:
+                        ItemDisplay.texture = Resources.Load("Textures/GreenBubble") as Texture;
+                        break;
+                    case PickUpItem.PowerUps.RedBubble:
+                        ItemDisplay.texture = Resources.Load("Textures/RedBubble") as Texture;
+                        break;
+                    case PickUpItem.PowerUps.BlueBubble:
+                        ItemDisplay.texture = Resources.Load("Textures/BlueBubble") as Texture;
+                        break;
+                }
+            }
+        }
 
         private GameObject _projectilesHolder;
+        private PickUpItem.PowerUps _availablePowerUp;
 
         // Use this for initialization
         void Start () {
@@ -51,6 +80,7 @@ namespace Assets.Cadriciel.Scripts
                     break;
                 case PickUpItem.PowerUps.RedBubble:
                     bubble = Instantiate(Resources.Load("RedBubble")) as GameObject;
+                    bubble.GetComponentInChildren<EnnemyTracking>().Owner = this.gameObject;
                     break;
                 case PickUpItem.PowerUps.BlueBubble:
                     bubble = Instantiate(Resources.Load("BlueBubble")) as GameObject;

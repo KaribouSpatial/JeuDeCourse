@@ -152,6 +152,7 @@ MonoBehaviour:
   GravityMultiplication: 3
   MaxTime: 0
   MaxRebounds: 1
+  ExplodesWithCars: 1
   ExplosionForce: 1000
   TorqueForce: 1000
   SpeedReduction: 9.99999975e-05

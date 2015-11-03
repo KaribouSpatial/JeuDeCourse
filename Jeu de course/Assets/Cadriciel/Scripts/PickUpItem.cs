@@ -16,7 +16,7 @@ namespace Assets.Cadriciel.Scripts
 
         // Use this for initialization
         void Start () {
-                NextPowerUp = (PowerUps) Random.Range(1, 3);
+                NextPowerUp = (PowerUps) Random.Range(1, 4);
         }
 	
         // Update is called once per frame
@@ -27,7 +27,7 @@ namespace Assets.Cadriciel.Scripts
                 _deactivatedTime -= Time.deltaTime;
                 if(_deactivatedTime <= 0) {
                     GetComponent<MeshRenderer> ().enabled = true;
-                    NextPowerUp = (PowerUps) Random.Range(1, 3);
+                    NextPowerUp = (PowerUps) Random.Range(1, 4);
                 }
             }
         }

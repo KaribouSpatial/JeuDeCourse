@@ -6,6 +6,8 @@ namespace Assets.Cadriciel.Scripts
     {
         public int TrackingForce;
 
+        public GameObject Owner { get; set; }
+
         private GameObject _ennemy;
 
         // Use this for initialization
@@ -29,7 +31,7 @@ namespace Assets.Cadriciel.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.attachedRigidbody != null && _ennemy == null && other.attachedRigidbody.gameObject.GetComponent<CarController>() != null)
+            if (other.attachedRigidbody != null && _ennemy == null && other.attachedRigidbody.gameObject.GetComponent<CarController>() != null && other.attachedRigidbody.gameObject != Owner)
             {
                 _ennemy = other.attachedRigidbody.gameObject;
             }
