@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class CheckpointManager : MonoBehaviour 
 {
@@ -12,6 +13,8 @@ public class CheckpointManager : MonoBehaviour
 	[SerializeField]
 	private int _totalLaps;
 
+	private int _resetTimer;
+
 	private bool _finished = false;
 	
 	private Dictionary<CarController,PositionData> _carPositions = new Dictionary<CarController, PositionData>();
@@ -20,7 +23,7 @@ public class CheckpointManager : MonoBehaviour
 	{
 		public int lap;
 		public int checkPoint;
-		public int position;
+		public Transform position;
 	}
 
 	// Use this for initialization
@@ -30,9 +33,10 @@ public class CheckpointManager : MonoBehaviour
 		{
 			_carPositions[car] = new PositionData();
 		}
+		_resetTimer = GameObject.FindWithTag("GameController").GetComponent<RaceManager>().TimeToStart;
 	}
 	
-	public void CheckpointTriggered(CarController car, int checkPointIndex)
+	public void CheckpointTriggered(CarController car, int checkPointIndex, Transform trans)
 	{
 
 		PositionData carData = _carPositions[car];
@@ -44,6 +48,7 @@ public class CheckpointManager : MonoBehaviour
 				if (carData.checkPoint == _checkPointCount-1)
 				{
 					carData.checkPoint = checkPointIndex;
+					carData.position = trans;
 					carData.lap += 1;
 					Debug.Log(car.name + " lap " + carData.lap);
 					if (IsPlayer(car))
@@ -62,6 +67,7 @@ public class CheckpointManager : MonoBehaviour
 			{
 				carData.checkPoint = checkPointIndex;
 			}
+			carData.position = trans;
 		}
 
 
@@ -70,5 +76,20 @@ public class CheckpointManager : MonoBehaviour
 	bool IsPlayer(CarController car)
 	{
 		return car.GetComponent<CarUserControlMP>() != null;
+	}
+
+	public IEnumerator ResetCar(CarController car)
+	{
+		int count = (int)((float)_resetTimer / 0.16f + 0.5f);
+		do 
+		{
+			car.transform.position = _carPositions [car].position.position;
+			car.transform.rotation = _carPositions [car].position.rotation;
+			car.rigidbody.velocity = Vector3.zero;
+			yield return new WaitForSeconds(0.16f);
+			count--;
+		}while (count > 0);
+		if(count <= 0)
+			car.Reset();
 	}
 }

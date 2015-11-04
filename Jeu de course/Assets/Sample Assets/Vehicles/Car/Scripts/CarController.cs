@@ -22,8 +22,12 @@ public class CarController : MonoBehaviour
     [SerializeField] [Range(0, .5f)] private float maxSpeedSteerResponse = 0.5f;    // the reduction in steer response at max speed
     [SerializeField] private float maxSpeed = 60;                                   // the maximum speed (in meters per second!)
     [SerializeField] private float maxTorque = 35;                                  // the maximum torque of the engine
+	[HideInInspector] public float moddedMaxTorque;
+	[HideInInspector] public float moddedMaxSpeed;
+	[HideInInspector] public float moddedDownforce;
     [SerializeField] private float minTorque = 10;                                  // the minimum torque of the engine
     [SerializeField] private float brakePower = 40;                                 // how powerful the brakes are at stopping the car
+	[HideInInspector] public float moddedBrakePower = 0;
     [SerializeField] private float adjustCentreOfMass = 0.25f;                      // vertical offset for the centre of mass
     [SerializeField] private Advanced advanced;                                     // container for the advanced setting which will expose as a foldout in the inspector
 	[SerializeField] bool preserveDirectionWhileInAir = false;                      // flag for if the direction of travel to be preserved in the air (helps cars land in the right direction if doing huge jumps!)
@@ -295,14 +299,14 @@ public class CarController : MonoBehaviour
 			if (wheel.powered) {
 				// apply power to wheels marked as powered:
 				// available torque drops off as we approach max speed
-				var currentMaxTorque = Mathf.Lerp (maxTorque, (SpeedFactor < 1) ? minTorque : 0, reversing ? SpeedFactor : curvedSpeedFactor);
+				var currentMaxTorque = Mathf.Lerp (maxTorque + moddedMaxTorque, (SpeedFactor < 1) ? minTorque : 0, reversing ? SpeedFactor : curvedSpeedFactor);
 				wheelCollider.motorTorque = AccelInput * currentMaxTorque;
 				// accumulate RPM from this wheel, for averaging later
 				AvgPowerWheelRpmFactor += wheel.Rpm / wheel.MaxRpm;
 				numPowerWheels++;
 			}
 			// apply curent brake torque to wheel
-			wheelCollider.brakeTorque = BrakeInput * brakePower;
+			wheelCollider.brakeTorque = BrakeInput * (brakePower+moddedBrakePower);
 			// if any wheel is on the ground, the car is considered grounded
 			if (wheel.OnGround) {
 				anyOnGround = true;
@@ -316,8 +320,9 @@ public class CarController : MonoBehaviour
 	void ApplyDownforce ()
 	{
 		// apply downforce
-		if (anyOnGround) {
-			rigidbody.AddForce (-transform.up * curvedSpeedFactor * advanced.downForce);
+		if (anyOnGround) 
+		{
+			rigidbody.AddForce (-transform.up * curvedSpeedFactor * (advanced.downForce + moddedDownforce));
 		}
 	}
 
@@ -399,5 +404,6 @@ public class CarController : MonoBehaviour
 	public void Reset()
 	{
 		immobilized = false;
+		GetComponent<Rigidbody> ().velocity = Vector3.zero;
 	}
 }

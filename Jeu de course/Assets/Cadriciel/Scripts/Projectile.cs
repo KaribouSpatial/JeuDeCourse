@@ -48,6 +48,13 @@ namespace Assets.Cadriciel.Scripts
         {
             foreach (ContactPoint contact in collision.contacts)
             {
+				var destructible = collision.transform.GetComponentInParent<Destructible>();
+				if(destructible)
+				{
+					destructible.Damage();
+					Destroy(this.gameObject);
+					return;
+				}
                 // Collision with a car
                 if (contact.otherCollider.attachedRigidbody != null && contact.otherCollider.attachedRigidbody.gameObject.GetComponent<CarController>() != null)
                 {

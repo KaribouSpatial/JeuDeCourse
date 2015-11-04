@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
 			CarController car = other.transform.GetComponentInParent<CarController>();
 			if (car)
 			{
-				_manager.CheckpointTriggered(car,_index);
+				_manager.CheckpointTriggered(car,_index, transform);
 			}
 		}
 	}

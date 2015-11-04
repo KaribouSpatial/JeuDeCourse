@@ -16,8 +16,26 @@ public class RaceManager : MonoBehaviour
 	[SerializeField]
 	private int _timeToStart;
 
+	public int TimeToStart{ get{ return _timeToStart; }}
+
 	[SerializeField]
 	private int _endCountdown;
+
+	[SerializeField]
+	[RangeAttribute(1.0f,100.0f)]
+	private float _rubberBandFactor;
+	[SerializeField]
+	[RangeAttribute(1.0f,5.0f)]
+	private float _rubberBandTorqueFactor;
+	[SerializeField]
+	[RangeAttribute(1.0f,5.0f)]
+	private float _rubberBandMaxSpeedFactor;
+	[SerializeField]
+	[RangeAttribute(1.0f,5.0f)]
+	private float _rubberBandBrakeFactor;
+	[SerializeField]
+	[RangeAttribute(0.0f,5.0f)]
+	private float _rubberBandDownForceFactor;
 
     public GameObject[] CarsPositions;
 
@@ -103,22 +121,15 @@ public class RaceManager : MonoBehaviour
 
 	public void LateUpdate()
 	{
-		for(int i = 1; i < CarsPositions.Length; ++i) 
+		for(int i = 0; i < CarsPositions.Length; ++i) 
 		{
-			if(CarsPositions[i].GetComponentInChildren<CarAIControl>())
+			if(CarsPositions[i].GetComponentInChildren<CarAIControl>() || CarsPositions[i].GetComponentInChildren<CarUserControlMP>())
 			{
-				if(!CarsPositions[i].GetComponentInChildren<CarAIControl>().enabled)
-					continue;
+				CarsPositions[i].GetComponentInChildren<CarController>().moddedMaxTorque = _rubberBandTorqueFactor*(float)i * _rubberBandFactor;
+				CarsPositions[i].GetComponentInChildren<CarController>().moddedMaxSpeed = _rubberBandMaxSpeedFactor*(float)i * _rubberBandFactor;
+				CarsPositions[i].GetComponentInChildren<CarController>().moddedBrakePower = _rubberBandBrakeFactor*(float)i * _rubberBandFactor;
+				CarsPositions[i].GetComponentInChildren<CarController>().moddedDownforce = _rubberBandDownForceFactor*(float)i * _rubberBandFactor;
 			}
-			if(CarsPositions[i].GetComponentInChildren<CarUserControlMP>())
-			{
-				if(!CarsPositions[i].GetComponentInChildren<CarUserControlMP>().enabled)
-					continue;
-			}
-
-			var car = CarsPositions[i].GetComponent<Rigidbody>();
-			var force = new Vector3(car.transform.forward.x*car.velocity.x*0.01f*i, 0, car.transform.forward.z*car.velocity.z*0.01f*i);
-			car.AddForce(force);
 		}
 	}
 }
