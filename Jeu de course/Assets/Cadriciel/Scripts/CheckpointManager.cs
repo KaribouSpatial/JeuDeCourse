@@ -94,10 +94,6 @@ public class CheckpointManager : MonoBehaviour
 				car.Reset ();
 
 			yield return new WaitForSeconds (0.5f);
-			foreach(var item in car.GetComponents<BoxCollider>())
-			{
-				item.enabled = false;
-			}
 		}
 	}
 }
