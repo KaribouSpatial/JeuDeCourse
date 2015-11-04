@@ -80,16 +80,24 @@ public class CheckpointManager : MonoBehaviour
 
 	public IEnumerator ResetCar(CarController car)
 	{
-		int count = (int)((float)_resetTimer / 0.16f + 0.5f);
-		do 
+		if (_carPositions [car].position != null) 
 		{
-			car.transform.position = _carPositions [car].position.position;
-			car.transform.rotation = _carPositions [car].position.rotation;
-			car.rigidbody.velocity = Vector3.zero;
-			yield return new WaitForSeconds(0.16f);
-			count--;
-		}while (count > 0);
-		if(count <= 0)
-			car.Reset();
+			int count = (int)((float)_resetTimer / 0.16f + 0.5f);
+			do {
+				car.transform.position = _carPositions [car].position.position;
+				car.transform.rotation = _carPositions [car].position.rotation;
+				car.rigidbody.velocity = Vector3.zero;
+				yield return new WaitForSeconds (0.16f);
+				count--;
+			} while (count > 0);
+			if (count <= 0)
+				car.Reset ();
+
+			yield return new WaitForSeconds (0.5f);
+			foreach(var item in car.GetComponents<BoxCollider>())
+			{
+				item.enabled = false;
+			}
+		}
 	}
 }

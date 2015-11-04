@@ -17,6 +17,8 @@ public class CarController : MonoBehaviour
 
 
     [SerializeField] private float maxSteerAngle = 28;                              // The maximum angle the car can steer
+	[SerializeField] private int _hp = 2;                              				// The maximum damage a car can sustain before having to be respawned
+	[HideInInspector] public int currentHp;
     [SerializeField] private float steeringResponseSpeed = 200;                     // how fast the steering responds
     [SerializeField] [Range(0, 1)] private float maxSpeedSteerAngle = 0.23f;        // the reduction in steering angle at max speed
     [SerializeField] [Range(0, .5f)] private float maxSpeedSteerResponse = 0.5f;    // the reduction in steer response at max speed
@@ -137,7 +139,7 @@ public class CarController : MonoBehaviour
 	bool reversing;
 	float targetAccelInput; // target accel input is our desired acceleration input. We smooth towards it later
 
-
+	[SerializeField] private float _damagedSteerFactor = 1.0f;
 
 
 	void Awake ()
@@ -156,6 +158,7 @@ public class CarController : MonoBehaviour
 		// a few useful speeds are calculated for use later:
 	    smallSpeed = maxSpeed*0.05f;
         maxReversingSpeed = maxSpeed * advanced.reversingSpeedFactor;
+		currentHp = _hp;
 	}
 
 
@@ -194,6 +197,11 @@ public class CarController : MonoBehaviour
 
 		if (speedNeedle)
 			UpdateSpeedoMeter();
+
+		if (_hp != currentHp && anyOnGround) 
+		{
+			rigidbody.AddForce((1.0f-(float)currentHp/(float)_hp)*transform.right*_damagedSteerFactor);
+		}
 	}
 
 	void UpdateSpeedoMeter()
@@ -404,6 +412,41 @@ public class CarController : MonoBehaviour
 	public void Reset()
 	{
 		immobilized = false;
-		GetComponent<Rigidbody> ().velocity = Vector3.zero;
+	}
+
+	public void OnCollisionEnter(Collision col)
+	{
+		var oCar = col.transform.GetComponentInParent<CarController>();
+		if(oCar)
+		{
+			oCar.takeDamage();
+		}
+	}
+
+	[SerializeField] private GUITexture _damageTexture;
+	public void takeDamage()
+	{
+		if (immobilized)
+			return;
+		if(--currentHp <= 0)
+		{
+			var gameManager = GameObject.FindWithTag ("GameController");
+			if (GetComponent<CarUserControlMP>()) 
+			{
+				var racer = gameManager.GetComponent<RaceManager> ();
+				racer.StartCoroutine ("StartCountdown");
+				Immobilize ();
+			}
+			var checkpointer = gameManager.GetComponent<CheckpointManager> ();
+			checkpointer.StartCoroutine("ResetCar", this);
+			currentHp = _hp;
+		}
+		if (GetComponent<CarUserControlMP> ()) 
+		{
+			Color c = _damageTexture.color;
+			c.a = 0.3f*(1.0f-(float)currentHp/(float)_hp);
+			_damageTexture.color = c;
+		}
+
 	}
 }

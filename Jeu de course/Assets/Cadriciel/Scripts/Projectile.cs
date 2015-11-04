@@ -61,6 +61,7 @@ namespace Assets.Cadriciel.Scripts
                     contact.otherCollider.attachedRigidbody.AddForce(0, ExplosionForce, 0);
                     contact.otherCollider.attachedRigidbody.velocity *= SpeedReduction;
                     contact.otherCollider.attachedRigidbody.AddTorque(new Vector3(TorqueForce, TorqueForce, TorqueForce));
+					collision.transform.GetComponentInParent<CarController>().takeDamage();
 
                     if (ExplodesWithCars)
                     {

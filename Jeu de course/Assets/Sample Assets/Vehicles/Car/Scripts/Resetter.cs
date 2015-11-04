@@ -23,8 +23,8 @@ public class Resetter : MonoBehaviour {
 					racer.StartCoroutine ("StartCountdown");
 					car.Immobilize ();
 				}
-				var checkpointer2 = _gameManager.GetComponent<CheckpointManager> ();
-				checkpointer2.StartCoroutine("ResetCar", car);
+				var checkpointer = _gameManager.GetComponent<CheckpointManager> ();
+				checkpointer.StartCoroutine("ResetCar", car);
 			}
 		}
 	}

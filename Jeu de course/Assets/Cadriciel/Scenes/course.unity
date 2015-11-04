@@ -5783,6 +5783,10 @@ Prefab:
       propertyPath: progressStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
   m_RootGameObject: {fileID: 1635867382}
@@ -10424,6 +10428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -10455,6 +10461,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 1532787419}
+  _damagedSteerFactor: 30
+  _damageTexture: {fileID: 1876729308}
 --- !u!114 &481286552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11431,6 +11439,18 @@ Prefab:
       propertyPath: speedNeedle
       value: 
       objectReference: {fileID: 1532787419}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: _damageTexture
+      value: 
+      objectReference: {fileID: 1876729308}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: _hp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: _damagedSteerFactor
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400026, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
@@ -19686,6 +19706,10 @@ Prefab:
       propertyPath: progressStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
   m_RootGameObject: {fileID: 2042105150}
@@ -23181,6 +23205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -23212,6 +23238,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!54 &981142460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23514,6 +23542,95 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2109428619}
   m_GameObject: {fileID: 1004210680}
   m_Mesh: {fileID: 4300020, guid: e6fec471c20b9d148b1f87910e67bea4, type: 3}
+--- !u!1 &1011204128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1011204132}
+  - 223: {fileID: 1011204131}
+  - 114: {fileID: 1011204130}
+  - 114: {fileID: 1011204129}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1011204129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011204128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1011204130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011204128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1011204131
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011204128}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!224 &1011204132
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011204128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1001 &1018660873
 Prefab:
   m_ObjectHideFlags: 0
@@ -32132,6 +32249,7 @@ Transform:
   - {fileID: 1158101499}
   - {fileID: 438218562}
   - {fileID: 1984434776}
+  - {fileID: 1876729306}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1316483489
@@ -33313,6 +33431,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -33344,6 +33464,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!114 &1368033982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37686,6 +37808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -37717,6 +37841,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!114 &1635867385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39203,6 +39329,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
       propertyPath: progressStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
@@ -40814,6 +40944,10 @@ Prefab:
       propertyPath: progressStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
   m_RootGameObject: {fileID: 981142452}
@@ -42359,6 +42493,65 @@ Prefab:
   m_RootGameObject: {fileID: 636401174}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1876729305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1876729306}
+  - 131: {fileID: 1876729308}
+  - 114: {fileID: 1876729307}
+  m_Layer: 5
+  m_Name: DamageState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876729306
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876729305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1305879589}
+  m_RootOrder: 6
+--- !u!114 &1876729307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876729305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec342b304dad5b48bd4a81d2b75bf98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!131 &1876729308
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876729305}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 668c6ae7aa891ee41b1960f5ca100a1a, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &1876737413
 GameObject:
   m_ObjectHideFlags: 0
@@ -42615,6 +42808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -42646,6 +42841,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!54 &1881066739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -45815,6 +46012,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -45846,6 +46045,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!54 &1977983691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47584,6 +47785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -47615,6 +47818,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!114 &2042105153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47924,6 +48129,10 @@ Prefab:
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: speedNeedle
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: _hp
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400026, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
@@ -48936,6 +49145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
+  _hp: 3
+  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -48967,6 +49178,8 @@ MonoBehaviour:
   jumpPower: 100
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
+  _damagedSteerFactor: 10
+  _damageTexture: {fileID: 0}
 --- !u!114 &2099699819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49351,6 +49564,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
       propertyPath: progressStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
@@ -50073,6 +50290,10 @@ Prefab:
     - target: {fileID: 11400000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
       propertyPath: progressStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
+      propertyPath: _hp
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce87ff1a55e61844fbd4cf92e6653b8f, type: 2}
