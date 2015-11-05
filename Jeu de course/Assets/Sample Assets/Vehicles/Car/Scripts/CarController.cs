@@ -36,6 +36,8 @@ public class CarController : MonoBehaviour
 	[SerializeField] private float jumpPower = 100;
 	[SerializeField] [Range(0,1)] private float aerialControlFactor = 0.5f;
 	[SerializeField] private SpeedoNeedle speedNeedle;
+	[SerializeField] private NitroNeedle nitroNeedle;
+    [SerializeField] public int accelerationForce = 50;
 
     [System.Serializable]
     public class Advanced                                                           // the advanced settings for the car controller
@@ -64,6 +66,7 @@ public class CarController : MonoBehaviour
     private float smallSpeed;                                                       // A small proportion of max speed, used to decide when to start accelerating/braking when transitioning between fwd and reverse motion
     private float maxReversingSpeed;                                                // The maximum reversing speed
 	private bool immobilized;                                                       // Whether the car is accepting inputs.
+    private bool canAccelerate = false;                                             // Whether the car can accelerate
 
 
 	// publicly read-only props, useful for GUI, Sound effects, etc.
@@ -169,7 +172,7 @@ public class CarController : MonoBehaviour
 	}
 
 
-	public void Move (float steerInput, float accelBrakeInput, float jump)
+	public void Move (float steerInput, float accelBrakeInput, float jump, bool accelerate = false)
     {
 
 		// lose control of engine if immobilized
@@ -202,12 +205,44 @@ public class CarController : MonoBehaviour
 		{
 			rigidbody.AddForce((1.0f-(float)currentHp/(float)_hp)*transform.right*_damagedSteerFactor);
 		}
-	}
+
+	    if (nitroNeedle)
+	    {
+	        if (accelerate && canAccelerate)
+	        {
+	            // Apply force
+	            rigidbody.AddForce(transform.forward*accelerationForce, ForceMode.Acceleration);
+	            // Play particule system
+	            var particuleSystem = collider.gameObject.GetComponentsInChildren<ParticleSystem>();
+	            foreach (var ps in particuleSystem)
+	            {
+	                if (ps.name == "AccelerationSmoke")
+	                {
+	                    ps.Play();
+	                }
+	            }
+	            // Reset nitro
+	            canAccelerate = false;
+	            nitroNeedle.angle = 0;
+	        }
+	    }
+    }
 
 	void UpdateSpeedoMeter()
 	{
 		speedNeedle.angle = rigidbody.velocity.magnitude * 4;
 	}
+
+    void Update()
+    {
+        if (nitroNeedle)
+        {
+            if (nitroNeedle.angle >= 270)
+            {
+                canAccelerate = true;
+            }
+        }
+    }
 
 	void ConvertInputToAccelerationAndBraking (float accelBrakeInput)
 	{

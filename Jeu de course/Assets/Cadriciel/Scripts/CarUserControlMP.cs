@@ -25,11 +25,12 @@ public class CarUserControlMP : MonoBehaviour
 		float h = CrossPlatformInput.GetAxis(horizontal);
 		float v = CrossPlatformInput.GetAxis(vertical);
 		float jump = CrossPlatformInput.GetAxis("Jump");
+	    bool accelerate = CrossPlatformInput.GetButton("Accelerate");
 		#else
 		float h = Input.GetAxis(horizontal);
 		float v = Input.GetAxis(vertical);
 		float jump = Input.GetAxis("Jump");
 		#endif
-		car.Move(h,v,jump);
+		car.Move(h,v,jump, accelerate);
 	}
 }

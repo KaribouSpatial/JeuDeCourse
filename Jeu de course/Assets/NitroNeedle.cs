@@ -23,6 +23,14 @@ public class NitroNeedle : MonoBehaviour
         pivot = new Vector2(rect.xMin + rect.width * 0.5f, rect.yMin + rect.height * 0.5f);
     }
 
+    void Update()
+    {
+        if (angle < 270)
+        {
+            angle += 0.1f;
+        }
+    }
+
     void OnGUI()
     {
         if (Application.isEditor) { UpdateSettings(); }
