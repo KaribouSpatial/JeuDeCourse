@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class CarController : MonoBehaviour
 	[SerializeField] private SpeedoNeedle speedNeedle;
 	[SerializeField] private NitroNeedle nitroNeedle;
     [SerializeField] public int accelerationForce = 50;
+    [SerializeField] public int nbNitroBoost = 2;
 
     [System.Serializable]
     public class Advanced                                                           // the advanced settings for the car controller
@@ -172,7 +174,7 @@ public class CarController : MonoBehaviour
 	}
 
 
-	public void Move (float steerInput, float accelBrakeInput, float jump, bool accelerate = false)
+	public void Move (float steerInput, float accelBrakeInput, float jump)
     {
 
 		// lose control of engine if immobilized
@@ -205,44 +207,42 @@ public class CarController : MonoBehaviour
 		{
 			rigidbody.AddForce((1.0f-(float)currentHp/(float)_hp)*transform.right*_damagedSteerFactor);
 		}
+		
+		var accelerate = Input.GetKeyDown(KeyCode.LeftShift);
+        if (nitroNeedle)
+        {
+            if (nitroNeedle.angle >= 270/nbNitroBoost)
+            {
+                canAccelerate = true;
+            }
+			else
+			{
+				canAccelerate = false;
+			}
 
-	    if (nitroNeedle)
-	    {
-	        if (accelerate && canAccelerate)
-	        {
-	            // Apply force
-	            rigidbody.AddForce(transform.forward*accelerationForce, ForceMode.Acceleration);
-	            // Play particule system
-	            var particuleSystem = collider.gameObject.GetComponentsInChildren<ParticleSystem>();
-	            foreach (var ps in particuleSystem)
-	            {
-	                if (ps.name == "AccelerationSmoke")
-	                {
-	                    ps.Play();
-	                }
-	            }
-	            // Reset nitro
-	            canAccelerate = false;
-	            nitroNeedle.angle = 0;
-	        }
-	    }
+            if (accelerate && canAccelerate)
+            {
+                // Apply force
+                rigidbody.AddForce(transform.forward * accelerationForce, ForceMode.Acceleration);
+                // Play particule system
+                var particuleSystem = collider.gameObject.GetComponentsInChildren<ParticleSystem>();
+                foreach (var ps in particuleSystem)
+                {
+                    if (ps.name == "AccelerationSmoke")
+                    {
+                        ps.Play();
+                    }
+                }
+                // Reset angle nitro
+                nitroNeedle.angle -= (270 / nbNitroBoost);
+            }
+        }
     }
 
 	void UpdateSpeedoMeter()
 	{
 		speedNeedle.angle = rigidbody.velocity.magnitude * 4;
 	}
-
-    void Update()
-    {
-        if (nitroNeedle)
-        {
-            if (nitroNeedle.angle >= 270)
-            {
-                canAccelerate = true;
-            }
-        }
-    }
 
 	void ConvertInputToAccelerationAndBraking (float accelBrakeInput)
 	{

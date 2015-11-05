@@ -27,7 +27,7 @@ public class NitroNeedle : MonoBehaviour
     {
         if (angle < 270)
         {
-            angle += 0.1f;
+            angle += 1f;
         }
     }
 
