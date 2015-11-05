@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -38,7 +39,7 @@ public class CarController : MonoBehaviour
 	[SerializeField] [Range(0,1)] private float aerialControlFactor = 0.5f;
 	[SerializeField] private SpeedoNeedle speedNeedle;
 	[SerializeField] private NitroNeedle nitroNeedle;
-    [SerializeField] public int accelerationForce = 50;
+    [SerializeField] public float accelerationForce = 0.5f;
     [SerializeField] public int nbNitroBoost = 2;
 
     [System.Serializable]
@@ -223,7 +224,7 @@ public class CarController : MonoBehaviour
             if (accelerate && canAccelerate)
             {
                 // Apply force
-                rigidbody.AddForce(transform.forward * accelerationForce, ForceMode.Acceleration);
+				applyAccelerationBoost();
                 // Play particule system
                 var particuleSystem = collider.gameObject.GetComponentsInChildren<ParticleSystem>();
                 foreach (var ps in particuleSystem)
@@ -235,9 +236,24 @@ public class CarController : MonoBehaviour
                 }
                 // Reset angle nitro
                 nitroNeedle.angle -= (270 / nbNitroBoost);
+				StartCoroutine(applyAccelerationBoost());
             }
         }
     }
+
+	IEnumerator applyAccelerationBoost()
+	{
+		int count = 100;
+		do {
+			yield return new WaitForSeconds (0.01f);
+			rigidbody.AddForce (transform.forward * accelerationForce * count);
+			rigidbody.AddForce (-transform.up * accelerationForce);
+		} while (count-- >= 0);
+		count = 100;
+		do {
+		rigidbody.AddForce (-transform.up * accelerationForce);
+		} while (count-- >= 0);
+	}
 
 	void UpdateSpeedoMeter()
 	{

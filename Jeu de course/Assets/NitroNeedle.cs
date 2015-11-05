@@ -11,6 +11,8 @@ public class NitroNeedle : MonoBehaviour
     Rect rect;
     Vector2 pivot;
 
+	[SerializeField] private float _nitroRechargeSpeed = 0.1f;
+
     void Start()
     {
         UpdateSettings();
@@ -19,7 +21,7 @@ public class NitroNeedle : MonoBehaviour
     void UpdateSettings()
     {
         pos = new Vector2(transform.localPosition.x, Screen.height - transform.localPosition.y);
-        rect = new Rect(pos.x - size.x * 0.5f, pos.y - size.y * 0.5f, size.x, size.y);
+        rect = new Rect(Screen.width - size.x*1.6f, pos.y - size.y*0.5f, size.x, size.y);
         pivot = new Vector2(rect.xMin + rect.width * 0.5f, rect.yMin + rect.height * 0.5f);
     }
 
@@ -27,7 +29,7 @@ public class NitroNeedle : MonoBehaviour
     {
         if (angle < 270)
         {
-            angle += 1f;
+            angle += _nitroRechargeSpeed;
         }
     }
 

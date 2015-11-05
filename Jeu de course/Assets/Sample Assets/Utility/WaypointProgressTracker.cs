@@ -36,6 +36,24 @@ public class WaypointProgressTracker : MonoBehaviour {
 	private Vector3 lastPosition;			// Used to calculate current speed (since we may not have a rigidbody component)
 	private float speed;					// current speed of this object (calculated from delta since last frame)
 
+	public Transform LastWaypoint 
+	{ get
+		{
+			var ret = circuit.Waypoints[0];
+			var dist = (transform.position - circuit.Waypoints[0].position).magnitude;
+			foreach(var item in circuit.Waypoints)
+			{
+				var dist2 = (transform.position - item.position).magnitude;
+				if (dist2 < dist)
+				{
+					ret = item;
+					dist = dist2;
+				}
+			}
+			return ret;
+		}
+	}
+
 	// setup script properties
 	void Start ()
 	{
