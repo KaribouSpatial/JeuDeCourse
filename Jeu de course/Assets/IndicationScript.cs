@@ -23,6 +23,7 @@ public class IndicationScript : MonoBehaviour {
                 GameObject leftSign = GameObject.Find("UI/TurnLeft");
                 if (leftSign != null)
                 {
+                    leftSign.GetComponent<GUITexture>().texture = Resources.Load("Textures/black-arrow-left") as Texture;
                     leftSign.GetComponent<GUITexture>().enabled = true;
                 }
             }
@@ -31,6 +32,7 @@ public class IndicationScript : MonoBehaviour {
                 GameObject rightSign = GameObject.Find("UI/TurnRight");
                 if (rightSign != null)
                 {
+                    rightSign.GetComponent<GUITexture>().texture = Resources.Load("Textures/black-arrow-right") as Texture;
                     rightSign.GetComponent<GUITexture>().enabled = true;
                 }
             }

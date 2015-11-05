@@ -20,6 +20,18 @@ public class AccelerationBonusScript : MonoBehaviour
 
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        var particuleSystem = collider.gameObject.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in particuleSystem)
+        {
+            if (ps.name == "AccelerationSmoke")
+            {
+                ps.Play();
+            }
+        }
+    }
+
     void OnTriggerStay(Collider collider)
     {
         if (collider.attachedRigidbody)
