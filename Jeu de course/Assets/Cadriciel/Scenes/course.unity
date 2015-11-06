@@ -8993,10 +8993,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c5989fcca1cb683488fda0f19035e4cc, type: 2}
+  - {fileID: 2100000, guid: fef238ceacfb9ae4e8f947a63ffc5a96, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: 74a430585eaf0fc4e8ae96081a46007b, type: 2}
-  - {fileID: 2100000, guid: 0cd899a93c22fd44d8cb5b21fb8512fc, type: 2}
+  - {fileID: 2100000, guid: ac70e4e8ec7521e43b956a203cb6975e, type: 2}
+  - {fileID: 2100000, guid: b8c9d513b3b5d0146ad34f2001e4a589, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -11873,7 +11873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccd2354e1ae8e4b97bdf54f4ee5f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationForce: 50
+  accelerationForce: 25
 --- !u!65 &426059854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13230,13 +13230,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
+  _hp: 4
   currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
   maxSpeed: 60
-  maxTorque: 80
+  maxTorque: 60
   moddedMaxTorque: 0
   moddedMaxSpeed: 0
   moddedDownforce: 0
@@ -13412,6 +13412,8 @@ MonoBehaviour:
   JumpMinHeight: 5
   WaitTimeForFailure: 3
   ItemDisplay: {fileID: 1984434777}
+  Announcement: {fileID: 438218563}
+  displayTime: 2
 --- !u!65 &481286561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14178,7 +14180,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: maxTorque
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: maxSpeed
@@ -14250,7 +14252,7 @@ Prefab:
       objectReference: {fileID: 1876729308}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: _hp
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: _damagedSteerFactor
@@ -20393,7 +20395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccd2354e1ae8e4b97bdf54f4ee5f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationForce: 50
+  accelerationForce: 25
 --- !u!65 &667717236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30907,7 +30909,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -33179,7 +33181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccd2354e1ae8e4b97bdf54f4ee5f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationForce: 50
+  accelerationForce: 25
 --- !u!65 &1108206048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42428,7 +42430,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -48222,7 +48224,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -53332,7 +53334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccd2354e1ae8e4b97bdf54f4ee5f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationForce: 50
+  accelerationForce: 25
 --- !u!65 &1878859351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53572,7 +53574,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -56828,7 +56830,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -58657,7 +58659,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
@@ -60246,7 +60248,7 @@ MonoBehaviour:
   aerialControlFactor: .5
   speedNeedle: {fileID: 0}
   nitroNeedle: {fileID: 0}
-  accelerationForce: 50
+  accelerationForce: .5
   nbNitroBoost: 2
   _damagedSteerFactor: 1
   _damageTexture: {fileID: 0}
