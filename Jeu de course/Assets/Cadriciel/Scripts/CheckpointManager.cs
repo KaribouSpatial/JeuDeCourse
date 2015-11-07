@@ -88,11 +88,13 @@ public class CheckpointManager : MonoBehaviour
 			if(_index == 3)
 				_index = -3;
 			int index = _index++;
-			do {
+			do
+			{
 				car.transform.position = car.GetComponent<WaypointProgressTracker>().LastWaypoint.position;
 				car.transform.position = new Vector3(car.transform.position.x + (index%2)*0.0f, car.transform.position.y, car.transform.position.z + index*7.0f);
 				car.transform.rotation = car.GetComponent<WaypointProgressTracker>().LastWaypoint.rotation;
 				car.rigidbody.velocity = Vector3.zero;
+
 				yield return new WaitForSeconds (0.16f);
 				count--;
 			} while (count > 0);

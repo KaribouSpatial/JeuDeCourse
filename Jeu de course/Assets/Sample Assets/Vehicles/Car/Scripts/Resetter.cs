@@ -10,13 +10,24 @@ public class Resetter : MonoBehaviour {
 		_gameManager = GameObject.FindWithTag ("GameController");
 	}
 
-	void OnTriggerExit(Collider other)
+
+    private CarController _lastCollidedCar;
+
+    public IEnumerator ResetTimer()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _lastCollidedCar = null;
+    }
+
+    void OnTriggerExit(Collider other)
 	{
-		if (other as WheelCollider == null) 
+		if (!(other is WheelCollider))
 		{
-			CarController car = other.transform.GetComponentInParent<CarController>();
-			if (car != null) 
-			{
+			var car = other.transform.GetComponentInParent<CarController>();
+            if (car != null && (_lastCollidedCar == null || _lastCollidedCar != car))
+            {
+                _lastCollidedCar = car;
+                this.StartCoroutine("ResetTimer");
 				if (other.transform.GetComponentInParent<CarUserControlMP> ()) 
 				{
 					var racer = _gameManager.GetComponent<RaceManager> ();
