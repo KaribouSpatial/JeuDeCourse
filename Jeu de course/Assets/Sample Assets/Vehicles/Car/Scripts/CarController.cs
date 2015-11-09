@@ -485,7 +485,7 @@ public class CarController : MonoBehaviour
 			if (GetComponent<CarUserControlMP>()) 
 			{
 				var racer = gameManager.GetComponent<RaceManager> ();
-				racer.StartCoroutine ("StartCountdown");
+				racer.StartCoroutine ("StartCountdown", true);
 				Immobilize ();
 			}
 			var checkpointer = gameManager.GetComponent<CheckpointManager> ();

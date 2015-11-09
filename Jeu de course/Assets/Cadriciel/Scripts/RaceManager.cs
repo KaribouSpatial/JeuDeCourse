@@ -51,12 +51,13 @@ public class RaceManager : MonoBehaviour
 		StartCoroutine(StartCountdown());
 	}
 
-	IEnumerator StartCountdown()
+	IEnumerator StartCountdown(bool dead = false)
 	{
 		int count = _timeToStart;
+		string str = dead? "Vous etes morts!\n":"";
 		do 
 		{
-			_announcement.text = count.ToString();
+			_announcement.text = str + count.ToString();
 			yield return new WaitForSeconds(1.0f);
 			count--;
 		}

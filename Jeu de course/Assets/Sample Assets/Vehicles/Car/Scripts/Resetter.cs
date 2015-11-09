@@ -31,7 +31,7 @@ public class Resetter : MonoBehaviour {
 				if (other.transform.GetComponentInParent<CarUserControlMP> ()) 
 				{
 					var racer = _gameManager.GetComponent<RaceManager> ();
-					racer.StartCoroutine ("StartCountdown");
+					racer.StartCoroutine ("StartCountdown", false);
 					car.Immobilize ();
 				}
 				var checkpointer = _gameManager.GetComponent<CheckpointManager> ();
