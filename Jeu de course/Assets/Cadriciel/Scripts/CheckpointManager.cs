@@ -78,27 +78,23 @@ public class CheckpointManager : MonoBehaviour
 		return car.GetComponent<CarUserControlMP>() != null;
 	}
 
-	private int _index = -3;
-
 	public IEnumerator ResetCar(CarController car)
 	{
 		if (_carPositions [car].position != null) 
 		{
 			int count = (int)((float)_resetTimer / 0.16f + 0.5f);
-			if(_index == 3)
-				_index = -3;
-			car.transform.position = car.GetComponent<WaypointProgressTracker>().LastWaypoint.position;
-			var temp = car.transform.forward * _index * 7.0f;
-			temp.y = 0;
-			car.transform.position += temp;
-			car.transform.rotation = car.GetComponent<WaypointProgressTracker>().LastWaypoint.rotation;
+			var tracker = car.GetComponent<WaypointProgressTracker>();
+			car.transform.position = tracker.LastWaypoint.position;
+			car.transform.rotation = tracker.LastWaypoint.rotation;
 
 			do
 			{
 				yield return new WaitForSeconds (0.16f);
+				car.rigidbody.velocity = Vector3.zero;
 				count--;
 			} while (count > 0);
 		}
+
 		car.rigidbody.velocity = Vector3.zero;
 		car.Reset();
 	}

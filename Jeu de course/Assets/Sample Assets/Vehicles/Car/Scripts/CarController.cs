@@ -248,11 +248,11 @@ public class CarController : MonoBehaviour
 			yield return new WaitForSeconds (0.01f);
 			rigidbody.AddForce (transform.forward * accelerationForce * count);
 			rigidbody.AddForce (-transform.up * accelerationForce);
-		} while (count-- >= 0);
+		} while (count-- >= 0 && !immobilized);
 		count = 100;
 		do {
-		rigidbody.AddForce (-transform.up * accelerationForce);
-		} while (count-- >= 0);
+			rigidbody.AddForce (-transform.up * accelerationForce);
+		} while (count-- >= 0 && !immobilized);
 	}
 
 	void UpdateSpeedoMeter()

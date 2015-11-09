@@ -70,7 +70,10 @@ namespace Assets.Cadriciel.Scripts
                     return;
                 }
 
-                if (contact.otherCollider.gameObject.name != "Track" && contact.otherCollider.gameObject.GetComponent<PickUpItem>() == null && contact.thisCollider is CapsuleCollider)
+                if (contact.otherCollider.gameObject.name != "Track" 
+				    && contact.otherCollider.gameObject.GetComponent<PickUpItem>() == null 
+				    && !contact.otherCollider.gameObject.name.Contains("Ramp")
+				    && contact.thisCollider is CapsuleCollider)
                 {
                     // Never collide two times with the same object
                     if (_lastCollider != null && _lastCollider == contact.otherCollider)
