@@ -3111,6 +3111,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2099877694}
   m_GameObject: {fileID: 116221830}
   m_Mesh: {fileID: 4300000, guid: b5290684820a94548bedb95083785116, type: 3}
+--- !u!1 &125336734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 125336735}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &125336735
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 125336734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 530724336}
+  - {fileID: 1423842798}
+  m_Father: {fileID: 496046574}
+  m_RootOrder: 6
 --- !u!1 &125537092
 GameObject:
   m_ObjectHideFlags: 0
@@ -16335,6 +16364,7 @@ Transform:
   - {fileID: 1158375331}
   - {fileID: 814069811}
   - {fileID: 734181428}
+  - {fileID: 125336735}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &510526771
@@ -17027,6 +17057,47 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &530724335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 530724336}
+  - 114: {fileID: 530724337}
+  m_Layer: 0
+  m_Name: SnowballSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530724336
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 530724335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 183.789993, y: -228.759995, z: -182.119995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 125336735}
+  m_RootOrder: 0
+--- !u!114 &530724337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 530724335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3bcfd212ce1ece4d97c51a9abdbc782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowball: {fileID: 117532, guid: c4282a3fb9c5291458179fbd66d1c97c, type: 2}
+  spawnTime: 15
 --- !u!1 &531951658
 GameObject:
   m_ObjectHideFlags: 0
@@ -50281,6 +50352,58 @@ Prefab:
   m_RootGameObject: {fileID: 75115761}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1423842797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1423842798}
+  - 65: {fileID: 1423842800}
+  - 114: {fileID: 1423842799}
+  m_Layer: 0
+  m_Name: SnowballKill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423842798
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423842797}
+  m_LocalRotation: {x: 0, y: -.160876453, z: 0, w: .986974597}
+  m_LocalPosition: {x: 443.600006, y: -277.200012, z: -134.100006}
+  m_LocalScale: {x: 1, y: 18.0988655, z: 77.5544586}
+  m_Children: []
+  m_Father: {fileID: 125336735}
+  m_RootOrder: 1
+--- !u!114 &1423842799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423842797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a633e757daa888041abd4b7c2db9743d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1423842800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423842797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1426961455
 GameObject:
   m_ObjectHideFlags: 0
