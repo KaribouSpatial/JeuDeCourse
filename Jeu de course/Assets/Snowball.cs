@@ -19,6 +19,9 @@ public class Snowball : MonoBehaviour {
 			if (transform.localScale.x < 1) {
 				Destroy(gameObject);
 			}
+			if (rigidbody.mass < 1) {
+				rigidbody.mass = 1;
+			}
 		}
 	}
 
