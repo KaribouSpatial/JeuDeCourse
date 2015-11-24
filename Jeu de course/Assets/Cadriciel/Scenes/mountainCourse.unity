@@ -15916,8 +15916,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 4
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -15952,8 +15950,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 1803233481}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 10
-  _damageTexture: {fileID: 1876729308}
 --- !u!114 &481286552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35337,19 +35333,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0278493296
+      value: -.0329790264
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.775058448
+      value: -.774857104
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.0447328724
+      value: -.0405638218
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .62968874
+      value: .629971027
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_Name
@@ -35811,8 +35807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -35847,8 +35841,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &981142460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -49458,8 +49450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -49494,8 +49484,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &1368033982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56611,8 +56599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -56647,8 +56633,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &1635867385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60639,7 +60623,7 @@ MonoBehaviour:
   texture: {fileID: 2800000, guid: 5fb71048c6e07314880f7441e1ac14b1, type: 3}
   angle: 0
   size: {x: 64, y: 64}
-  _nitroRechargeSpeed: .150000006
+  _nitroRechargeSpeed: .300000012
 --- !u!1 &1804739138
 GameObject:
   m_ObjectHideFlags: 0
@@ -62232,7 +62216,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
   m_PrefabInternal: {fileID: 970742417}
   m_GameObject: {fileID: 1873886570}
-  m_LocalRotation: {x: -.0278493296, y: -.775058448, z: -.0447328724, w: .62968874}
+  m_LocalRotation: {x: -.0329790264, y: -.774857104, z: -.0405638218, w: .629971027}
   m_LocalPosition: {x: 36.1722107, y: 23.1578979, z: -328.555542}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -62791,8 +62775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -62827,8 +62809,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &1881066739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66617,8 +66597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -66653,8 +66631,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &1977983691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -68404,8 +68380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -68440,8 +68414,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &2042105153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70167,8 +70139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -70203,8 +70173,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &2099699819
 MonoBehaviour:
   m_ObjectHideFlags: 0

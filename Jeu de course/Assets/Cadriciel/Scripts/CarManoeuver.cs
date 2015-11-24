@@ -22,16 +22,6 @@ public class CarManoeuver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.y > JumpMinHeight ) {
-			Announcement.text = "Big air +" + PointsPerManoeuver + " pts!";
-			wipeAnnouncementTimer = displayTime;
-			jumping = true;
-		}
-		if (jumping && transform.position.y < 1) {
-			score += PointsPerManoeuver;
-			ItemDisplay.text = "Score: " + score;
-			jumping = false;
-		}
 		waitTime -= Time.deltaTime;
 		if (wipeAnnouncementTimer > 0) {
 			wipeAnnouncementTimer -= Time.deltaTime;
