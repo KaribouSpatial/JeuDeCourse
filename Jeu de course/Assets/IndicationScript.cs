@@ -4,9 +4,11 @@ using System.Collections;
 
 public class IndicationScript : MonoBehaviour {
 
+	private GameObject indications;
+
 	// Use this for initialization
 	void Start () {
-    
+		indications = GameObject.Find("UI/Indications");
 	}
 	
 	// Update is called once per frame
@@ -16,38 +18,27 @@ public class IndicationScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name == "Joueur 1")
+		if (collider.gameObject.name == "Joueur 1" && indications != null)
         {
             if (this.gameObject.name == "IndicationTriggerLeft")
             {
-                GameObject leftSign = GameObject.Find("UI/TurnLeft");
-                if (leftSign != null)
-                {
-                    leftSign.GetComponent<GUITexture>().texture = Resources.Load("Textures/black-arrow-left") as Texture;
-                    leftSign.GetComponent<GUITexture>().enabled = true;
-                }
+				indications.GetComponent<GUITexture>().texture = Resources.Load("Textures/arrow-left") as Texture;
+				indications.GetComponent<GUITexture>().enabled = true;
             }
             else if (this.gameObject.name == "IndicationTriggerRight")
             {
-                GameObject rightSign = GameObject.Find("UI/TurnRight");
-                if (rightSign != null)
-                {
-                    rightSign.GetComponent<GUITexture>().texture = Resources.Load("Textures/black-arrow-right") as Texture;
-                    rightSign.GetComponent<GUITexture>().enabled = true;
-                }
+				indications.GetComponent<GUITexture>().texture = Resources.Load("Textures/arrow-right") as Texture;
+				Debug.Log(indications.GetComponent<GUITexture>().texture);
+				indications.GetComponent<GUITexture>().enabled = true;
             }
-            else if (this.gameObject.name == "IndicationTriggerOff")
+			else if (this.gameObject.name == "IndicationTriggerSplit")
+			{
+				indications.GetComponent<GUITexture>().texture = Resources.Load("Textures/arrow-split") as Texture;
+				indications.GetComponent<GUITexture>().enabled = true;
+			}
+			else if (this.gameObject.name == "IndicationTriggerOff")
             {
-                GameObject leftSign = GameObject.Find("UI/TurnLeft");
-                if (leftSign != null)
-                {
-                    leftSign.GetComponent<GUITexture>().enabled = false;
-                }
-                GameObject rightSign = GameObject.Find("UI/TurnRight");
-                if (rightSign != null)
-                {
-                    rightSign.GetComponent<GUITexture>().enabled = false;
-                }
+				indications.GetComponent<GUITexture>().enabled = false;
             }
         }
     }
