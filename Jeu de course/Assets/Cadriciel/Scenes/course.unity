@@ -11695,10 +11695,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: a70a785c5cb5cdb489a82769cb6eb06f, type: 2}
+  - {fileID: 2100000, guid: 63c93c2bf0dcbfe458b850e73b977989, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: e03c8314a2eab894a8f1dfe59237482e, type: 2}
-  - {fileID: 2100000, guid: e763fc4b9a2986b41b3391c6d92d204f, type: 2}
+  - {fileID: 2100000, guid: 6083d354302e7bb4ca5b0d8401fce365, type: 2}
+  - {fileID: 2100000, guid: 3d362077a93cf7d41a41305874b9dce7, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -16831,8 +16831,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 4
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -16867,8 +16865,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 1803233481}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 10
-  _damageTexture: {fileID: 1876729308}
 --- !u!114 &481286552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20926,7 +20922,6 @@ MonoBehaviour:
   _rubberBandMaxSpeedFactor: 1
   _rubberBandBrakeFactor: 2
   _rubberBandDownForceFactor: 0
-  CarsPositions: []
 --- !u!114 &557694393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39514,8 +39509,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -39550,8 +39543,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &981142460
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54724,8 +54715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -54760,8 +54749,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &1368033982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59775,10 +59762,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: a70a785c5cb5cdb489a82769cb6eb06f, type: 2}
+  - {fileID: 2100000, guid: 63c93c2bf0dcbfe458b850e73b977989, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: e03c8314a2eab894a8f1dfe59237482e, type: 2}
-  - {fileID: 2100000, guid: e763fc4b9a2986b41b3391c6d92d204f, type: 2}
+  - {fileID: 2100000, guid: 6083d354302e7bb4ca5b0d8401fce365, type: 2}
+  - {fileID: 2100000, guid: 3d362077a93cf7d41a41305874b9dce7, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -63712,8 +63699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -63748,8 +63733,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &1635867385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70819,8 +70802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -70855,8 +70836,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &1881066739
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75180,8 +75159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -75216,8 +75193,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!54 &1977983691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77802,8 +77777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -77838,8 +77811,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &2042105153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80127,8 +80098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 28
-  _hp: 3
-  currentHp: 0
   steeringResponseSpeed: 200
   maxSpeedSteerAngle: .156000003
   maxSpeedSteerResponse: .5
@@ -80163,8 +80132,6 @@ MonoBehaviour:
   nitroNeedle: {fileID: 0}
   accelerationForce: .5
   nbNitroBoost: 2
-  _damagedSteerFactor: 1
-  _damageTexture: {fileID: 0}
 --- !u!114 &2099699819
 MonoBehaviour:
   m_ObjectHideFlags: 0

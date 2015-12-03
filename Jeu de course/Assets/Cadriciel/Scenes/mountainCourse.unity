@@ -12027,10 +12027,10 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: a70a785c5cb5cdb489a82769cb6eb06f, type: 2}
+  - {fileID: 2100000, guid: 63c93c2bf0dcbfe458b850e73b977989, type: 2}
   - {fileID: 2100000, guid: 40387387af73b324a85ec5b8bdb6afb2, type: 2}
-  - {fileID: 2100000, guid: e03c8314a2eab894a8f1dfe59237482e, type: 2}
-  - {fileID: 2100000, guid: e763fc4b9a2986b41b3391c6d92d204f, type: 2}
+  - {fileID: 2100000, guid: 6083d354302e7bb4ca5b0d8401fce365, type: 2}
+  - {fileID: 2100000, guid: 3d362077a93cf7d41a41305874b9dce7, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -21000,7 +21000,6 @@ MonoBehaviour:
   _rubberBandMaxSpeedFactor: 1
   _rubberBandBrakeFactor: 2
   _rubberBandDownForceFactor: 0
-  CarsPositions: []
 --- !u!114 &557694393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21014,7 +21013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carContainer: {fileID: 1158375330}
   _checkPointCount: 3
-  _totalLaps: 3
+  _totalLaps: 1
 --- !u!1 &561581018
 GameObject:
   m_ObjectHideFlags: 0
@@ -36823,7 +36822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.0278493222
+      value: -.0278493296
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.y
@@ -36831,7 +36830,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.0447328798
+      value: -.0447328724
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
       propertyPath: m_LocalRotation.w
@@ -64654,7 +64653,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: baec086904791744185aaa07a6cf55c2, type: 2}
   m_PrefabInternal: {fileID: 970742417}
   m_GameObject: {fileID: 1873886570}
-  m_LocalRotation: {x: -.0278493222, y: -.775058448, z: -.0447328798, w: .62968874}
+  m_LocalRotation: {x: -.0278493296, y: -.775058448, z: -.0447328724, w: .62968874}
   m_LocalPosition: {x: 36.1722107, y: 23.1578979, z: -328.555542}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

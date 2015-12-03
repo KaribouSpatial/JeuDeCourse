@@ -14,6 +14,7 @@ namespace Assets.Cadriciel.Scripts
         private void Start()
         {
             _ennemyTarget = GameObject.Find("Game Manager").GetComponent<RaceManager>().CarsPositions[0].transform;
+            //_ennemyTarget = RaceManager.CarsPositions[0].transform;
         }
 
         // Update is called once per frame

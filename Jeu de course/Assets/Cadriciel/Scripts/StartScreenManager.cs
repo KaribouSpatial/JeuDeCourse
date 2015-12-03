@@ -9,11 +9,8 @@ public class StartScreenManager : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update () 
+	public void Play () 
 	{
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-		{
-            Application.LoadLevel("mountainCourse");
-		}
+        Application.LoadLevel("mountainCourse");
 	}
 }

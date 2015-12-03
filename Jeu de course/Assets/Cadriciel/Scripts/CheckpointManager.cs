@@ -19,7 +19,7 @@ public class CheckpointManager : MonoBehaviour
 	
 	private Dictionary<CarController,PositionData> _carPositions = new Dictionary<CarController, PositionData>();
 
-	private class PositionData
+	public class PositionData
 	{
 		public int lap;
 		public int checkPoint;
@@ -40,7 +40,6 @@ public class CheckpointManager : MonoBehaviour
 	{
 
 		PositionData carData = _carPositions[car];
-
 		if (!_finished)
 		{
 			if (checkPointIndex == 0)
@@ -72,6 +71,11 @@ public class CheckpointManager : MonoBehaviour
 
 
 	}
+
+    public PositionData GetPositionFromCar(CarController car)
+    {
+        return _carPositions[car];
+    }
 
 	bool IsPlayer(CarController car)
 	{

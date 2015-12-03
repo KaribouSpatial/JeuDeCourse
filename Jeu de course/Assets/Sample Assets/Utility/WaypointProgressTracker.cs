@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class WaypointProgressTracker : MonoBehaviour {
 	
@@ -53,6 +54,29 @@ public class WaypointProgressTracker : MonoBehaviour {
 			return ret;
 		}
 	}
+
+    public KeyValuePair<int, float> LastWayPointObject
+    {
+        get
+        {
+            var ret = circuit.Waypoints[0];
+            var dist = (transform.position - circuit.Waypoints[0].position).magnitude;
+            var lastWaypointNumber = 0;
+            int i = 0;
+            foreach (var item in circuit.Waypoints)
+            {
+                var dist2 = (transform.position - item.position).magnitude;
+                if (dist2 < dist)
+                {
+                    ret = item;
+                    dist = dist2;
+                    lastWaypointNumber = i;
+                }
+                ++i;
+            }
+            return new KeyValuePair<int, float>(lastWaypointNumber, dist);
+        }
+    }
 
 	// setup script properties
 	void Start ()
