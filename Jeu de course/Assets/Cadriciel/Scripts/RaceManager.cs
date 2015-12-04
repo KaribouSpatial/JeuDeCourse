@@ -39,6 +39,7 @@ public class RaceManager : MonoBehaviour
 
     public GameObject[] CarsPositions;
     public static string CarPositionString = "";
+    public static float Timer;
 
 	// Use this for initialization
 	void Awake () 
@@ -134,25 +135,23 @@ public class RaceManager : MonoBehaviour
             return -1;
         }
         //same waypoint 
-        else if (c1.LastWayPointObject.Key == c2.LastWayPointObject.Key)
+        if (c1.LastWayPointObject.Key == c2.LastWayPointObject.Key)
         {
             //same waypoint higher distance
             if (c1.LastWayPointObject.Value > c2.LastWayPointObject.Value)
                 return -1;
-            else
-                return 1;
-        }
-        //lower waypoint
-        else
-        {
-            if (c1.LastWayPointObject.Key == 0)
-                return -1;
             return 1;
         }
+        //lower waypoint
+        if (c1.LastWayPointObject.Key == 0)
+            return -1;
+        return 1;
     }
 
     public void Update()
     {
+        Timer += Time.deltaTime;
+
         var tableau = _carContainer.GetComponentsInChildren<WaypointProgressTracker>().ToList();
         tableau.Sort(this.WaypointSorter);
 
@@ -160,8 +159,6 @@ public class RaceManager : MonoBehaviour
         foreach (var elem in tableau)
         {
             CarsPositions[i] = tableau[i].gameObject;
-            if(tableau[i].GetComponentInParent<CarUserControlMP>())
-                Debug.Log("human pos = " + i.ToString());
             ++i;
         }
     }

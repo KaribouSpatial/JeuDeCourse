@@ -21000,6 +21000,7 @@ MonoBehaviour:
   _rubberBandMaxSpeedFactor: 1
   _rubberBandBrakeFactor: 2
   _rubberBandDownForceFactor: 0
+  CarsPositions: []
 --- !u!114 &557694393
 MonoBehaviour:
   m_ObjectHideFlags: 0

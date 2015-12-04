@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EndScreenManager : MonoBehaviour
 {
-    public GUIText _endingText;
+    public UnityEngine.UI.Text _endingText;
+    public GameObject playerScore;
     private string[] cars;
 
 	void Awake()
@@ -14,10 +16,9 @@ public class EndScreenManager : MonoBehaviour
     void Start()
     {
         cars = RaceManager.CarPositionString.Split(';');
-        Debug.Log(cars[0].Split(',')[0]);
-        this._endingText.guiText.text = cars[0].Split(',')[0] == "Joueur 1"
+        this._endingText.text = cars[0].Split(',')[0] == "Joueur 1"
             ? "Félicitations! Vous avez gagné la course!"
-            : "Meilleure chance la prochaine fois";
+            : "Meilleure chance la prochaine fois!";
 
         this.ScoreTable();
     }
@@ -29,15 +30,25 @@ public class EndScreenManager : MonoBehaviour
 	}
 
     void ScoreTable() {
-        float win = Screen.width * 0.6f;
-        float w1 = win * 0.35f; 
-        float w2 = win * 0.15f;
         foreach (string car in this.cars)
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Label(car.Split(',')[1], GUILayout.Width(w1));
-            GUILayout.Label(car.Split(',')[0], GUILayout.Width(w2));
-            GUILayout.EndHorizontal();
+            if (!string.IsNullOrEmpty(car))
+            {
+				var carName = car.Split(',')[0];
+				var position = car.Split(',')[1];
+                GameObject boardEntry = (GameObject) Instantiate(playerScore);
+                boardEntry.transform.SetParent(GameObject.Find("PlayerEntries").transform, false);
+                boardEntry.transform.FindChild("Position").GetComponent<Text>().text = position;
+                boardEntry.transform.FindChild("Player").GetComponent<Text>().text = carName;
+                if (position == "1")
+                {
+                    boardEntry.transform.FindChild("Time").GetComponent<Text>().text = RaceManager.Timer + "s";
+                }
+                else
+                {
+                    boardEntry.transform.FindChild("Time").GetComponent<Text>().text = "";
+                }
+            }
         }
     } 
 }
