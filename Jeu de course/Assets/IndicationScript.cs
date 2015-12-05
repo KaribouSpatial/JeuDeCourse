@@ -28,7 +28,6 @@ public class IndicationScript : MonoBehaviour {
             else if (this.gameObject.name == "IndicationTriggerRight")
             {
 				indications.GetComponent<GUITexture>().texture = Resources.Load("Textures/arrow-right") as Texture;
-				Debug.Log(indications.GetComponent<GUITexture>().texture);
 				indications.GetComponent<GUITexture>().enabled = true;
             }
 			else if (this.gameObject.name == "IndicationTriggerSplit")
