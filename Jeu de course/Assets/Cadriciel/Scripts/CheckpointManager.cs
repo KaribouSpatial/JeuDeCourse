@@ -11,7 +11,7 @@ public class CheckpointManager : MonoBehaviour
 	[SerializeField]
 	private int _checkPointCount;
 	[SerializeField]
-	private int _totalLaps;
+	public int TotalLaps;
 
 	private int _resetTimer;
 
@@ -55,7 +55,7 @@ public class CheckpointManager : MonoBehaviour
 						GetComponent<RaceManager>().Announce("Tour " + (carData.lap+1).ToString());
 					}
 
-					if (carData.lap >= _totalLaps)
+					if (carData.lap >= TotalLaps)
 					{
 						_finished = true;
 						GetComponent<RaceManager>().EndRace(car.name.ToLower());

@@ -38,18 +38,26 @@ public class RaceManager : MonoBehaviour
 	private float _rubberBandDownForceFactor;
 
     public GameObject[] CarsPositions;
-    public static string CarPositionString = "";
+    public static string CarPositionString;
     public static float Timer;
 
 	// Use this for initialization
-	void Awake () 
+	void Awake ()
 	{
-		CarActivation(false);
-        CarsPositions = new GameObject[7];
-    }
+	    CarActivation(false);
+	}
 	
 	void Start()
 	{
+		CarsPositions = new GameObject[7];
+		for (int i = 0; i < _carContainer.GetComponentsInChildren<CarAIControl>().Length; i++)
+		{
+			CarsPositions[i] = _carContainer.GetComponentsInChildren<CarAIControl>()[i].gameObject;
+		}
+		CarsPositions[6] = _carContainer.GetComponentInChildren<CarUserControlMP>().gameObject;
+
+		CarPositionString = "";
+
 		StartCoroutine(StartCountdown());
 	}
 
@@ -72,6 +80,7 @@ public class RaceManager : MonoBehaviour
 
 	public void EndRace(string winner)
 	{
+        this.SortCars();
         for (int i = 0; i < CarsPositions.Length; i++)
         {
             CarPositionString += CarsPositions[i].name + "," + string.Format("{0}", i + 1) + ";";
@@ -129,6 +138,23 @@ public class RaceManager : MonoBehaviour
         {
             return -1;
         }
+        //higher lap
+        if (
+            GetComponentInParent<CheckpointManager>().GetPositionFromCar(c2.GetComponentInParent<CarController>()).lap
+            > GetComponentInParent<CheckpointManager>().GetPositionFromCar(c1.GetComponentInParent<CarController>()).lap)
+        {
+            return 1;
+        }
+        //lower waypoint
+        if (c2.LastWayPointObject.Key == 0 &&
+            GetComponentInParent<CheckpointManager>().GetPositionFromCar(c2.GetComponentInParent<CarController>()).lap >=
+            GetComponentInParent<CheckpointManager>().TotalLaps)
+            return 1;
+		//lower waypoint
+		if (c1.LastWayPointObject.Key == 0 &&
+		    GetComponentInParent<CheckpointManager>().GetPositionFromCar(c1.GetComponentInParent<CarController>()).lap >=
+		    GetComponentInParent<CheckpointManager>().TotalLaps)
+			return -1;
         //higher waypoint
         if (c1.LastWayPointObject.Key > c2.LastWayPointObject.Key)
         {
@@ -142,16 +168,11 @@ public class RaceManager : MonoBehaviour
                 return -1;
             return 1;
         }
-        //lower waypoint
-        if (c1.LastWayPointObject.Key == 0)
-            return -1;
         return 1;
     }
 
-    public void Update()
+    private void SortCars()
     {
-        Timer += Time.deltaTime;
-
         var tableau = _carContainer.GetComponentsInChildren<WaypointProgressTracker>().ToList();
         tableau.Sort(this.WaypointSorter);
 
@@ -159,8 +180,18 @@ public class RaceManager : MonoBehaviour
         foreach (var elem in tableau)
         {
             CarsPositions[i] = tableau[i].gameObject;
+            if (elem.GetComponentInParent<CarUserControlMP>())
+            {
+                Debug.Log(i + ", " + GetComponentInParent<CheckpointManager>().GetPositionFromCar(elem.GetComponentInParent<CarController>()).lap);
+            }
             ++i;
         }
+    }
+
+    public void Update()
+    {
+        Timer += Time.deltaTime;
+        this.SortCars();
     }
 
 	public void LateUpdate()
