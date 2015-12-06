@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19ca433bf871374ebdcc6ba09c500b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeltingSpeed: .400000006
+  MassDegradationImpact: 50
 --- !u!135 &13517532
 SphereCollider:
   m_ObjectHideFlags: 1

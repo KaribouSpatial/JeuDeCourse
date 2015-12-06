@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 
-	public GameObject snowball;
-	public float spawnTime = 10;
-	private float timer = 10;
+	public GameObject Snowball;
+	public float SpawnTime;
+
+    private float _timer;
 
 	// Use this for initialization
 	void Start () {
@@ -14,10 +15,10 @@ public class Spawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer += Time.deltaTime;
-		if (timer >= spawnTime) {
-			timer = 0;
-			Instantiate(snowball, transform.position, transform.rotation);
+		_timer += Time.deltaTime;
+		if (_timer >= SpawnTime) {
+			_timer = 0;
+			Instantiate(Snowball, transform.position, transform.rotation);
 		}
 	}
 }

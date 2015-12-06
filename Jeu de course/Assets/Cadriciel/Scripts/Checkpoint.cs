@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other as WheelCollider == null)
+		if (!(other is WheelCollider))
 		{
 			CarController car = other.transform.GetComponentInParent<CarController>();
 			if (car)
