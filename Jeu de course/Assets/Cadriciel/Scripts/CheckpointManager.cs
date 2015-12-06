@@ -84,20 +84,17 @@ public class CheckpointManager : MonoBehaviour
 
 	public IEnumerator ResetCar(CarController car)
 	{
-		if (_carPositions [car].position != null) 
-		{
-			int count = (int)((float)_resetTimer / 0.16f + 0.5f);
-			var tracker = car.GetComponent<WaypointProgressTracker>();
-			car.transform.position = tracker.LastWaypoint.position;
-			car.transform.rotation = tracker.LastWaypoint.rotation;
+        int count = (int)((float)_resetTimer / 0.16f + 0.5f);
+        var tracker = car.GetComponent<WaypointProgressTracker>();
+        car.transform.position = tracker.LastWaypoint.position;
+        car.transform.rotation = tracker.LastWaypoint.rotation;
 
-			do
-			{
-				yield return new WaitForSeconds (0.16f);
-				car.rigidbody.velocity = Vector3.zero;
-				count--;
-			} while (count > 0);
-		}
+        do
+        {
+            yield return new WaitForSeconds (0.16f);
+            car.rigidbody.velocity = Vector3.zero;
+            count--;
+        } while (count > 0);
 
 		car.rigidbody.velocity = Vector3.zero;
 		car.Reset();
